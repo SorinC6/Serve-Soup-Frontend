@@ -17,8 +17,24 @@ const Register = () => {
         <img src={plate} alt="logo" />
         <h2>Register Account</h2>
         <Form>
-          <InputField placeholder="username" />
-          <InputField placeholder="email" />
+          <InputField
+            placeholder="username"
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            focused={focused}
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
+          <InputField
+            placeholder="email"
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            focused={focused}
+            value={email}
+            type="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            onChange={e => setEmail(e.target.value)}
+          />
           <LabelWrapper>
             <p>Role:</p>
             <select onChange={e => setRole(e.target.value)}>
@@ -28,7 +44,16 @@ const Register = () => {
               <option value="admin">Admin</option>
             </select>
           </LabelWrapper>
-          <InputField placeholder="password" />
+          <InputField
+            placeholder="password"
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            focused={focused}
+            value={password}
+            type="password"
+            pattern=".{6,}"
+            onChange={e => setPassword(e.target.value)}
+          />
           <BtnWrapper>Register</BtnWrapper>
         </Form>
         <LinkWrapper to="/login">
@@ -86,10 +111,13 @@ const Form = styled.form`
 const InputField = styled.input`
   padding: 7px;
   margin: 5px;
-  width: 200px;
+  width: ${props => (props.focused ? "220px" : "200px")};
   outline: none;
   font-size: 20px;
   color: purple;
+  background: ${props => (props.focused ? "white" : "#E8E8E8")};
+  border-radius: ${props => (props.focused ? "10px" : "5px")};
+  transition: all 1s;
 `;
 
 const LinkWrapper = styled(Link)`
@@ -160,6 +188,7 @@ const LabelWrapper = styled.label`
   }
 
   select {
-    font-size: 16px;
+    font-size: 14px;
+    padding: 10px;
   }
 `;

@@ -1,18 +1,41 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import bg from "../../assets/login-bg.jpg";
 import plate from "../../assets/plate.png";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const [focused, setFocused] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <Container>
       <FormWrapper>
         <img src={plate} alt="logo" />
         <h2>Register Account</h2>
         <Form>
-          <InputField placeholder="username" />
-          <InputField placeholder="password" />
+          <InputField
+            placeholder="username"
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            focused={focused}
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
+          <InputField
+            placeholder="password"
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            focused={focused}
+            value={password}
+            type="password"
+            pattern=".{6,}"
+            title="Six or more characters"
+            onChange={e => setPassword(e.target.value)}
+            type="password"
+            pattern=".{6,}"
+          />
           <BtnWrapper>Login</BtnWrapper>
         </Form>
         <LinkWrapper to="/register">
@@ -70,10 +93,13 @@ const Form = styled.form`
 const InputField = styled.input`
   padding: 7px;
   margin: 5px;
-  width: 200px;
+  width: ${props => (props.focused ? "220px" : "200px")};
   outline: none;
   font-size: 20px;
   color: purple;
+  background: ${props => (props.focused ? "white" : "#E8E8E8")};
+  border-radius: ${props => (props.focused ? "10px" : "5px")};
+  transition: width 200ms, border 1s;
 `;
 
 const LinkWrapper = styled(Link)`
