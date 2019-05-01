@@ -13,7 +13,7 @@ const Login = () => {
     <Container>
       <FormWrapper>
         <img src={plate} alt="logo" />
-        <h2>Register Account</h2>
+        <h2>Login Account</h2>
         <Form>
           <InputField
             placeholder="username"
