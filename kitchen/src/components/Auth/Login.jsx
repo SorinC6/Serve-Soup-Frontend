@@ -13,6 +13,7 @@ const Login = () => {
         <Form>
           <InputField placeholder="username" />
           <InputField placeholder="password" />
+          <BtnWrapper>Login</BtnWrapper>
         </Form>
         <LinkWrapper to="/register">
           Don't have a account? Register Here
@@ -63,6 +64,7 @@ const FormWrapper = styled.div`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const InputField = styled.input`
@@ -80,4 +82,48 @@ const LinkWrapper = styled(Link)`
   color: purple;
   text-decoration: none;
   font-size: 14px;
+`;
+
+const BtnWrapper = styled.button`
+  padding: 10px;
+  width: 150px;
+  border-radius: 7px;
+  margin-top: 5px;
+  font-size: 16px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  font-weight: bold;
+
+  &:before {
+    content: "";
+    background: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 100%;
+    transform: skew(-15deg);
+    animation: moving 1.2s linear infinite;
+    transition: all 0.5s;
+    z-index: -1;
+    color: white;
+  }
+
+  &:hover:before {
+    width: 100%;
+    transform: skew(0deg);
+    animation: none;
+    background: purple;
+    color: white;
+  }
+
+  @keyframes moving {
+    from {
+      left: -120px;
+    }
+    to {
+      left: 100%;
+    }
+  }
 `;
