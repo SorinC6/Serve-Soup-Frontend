@@ -1,10 +1,16 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import bg from "../../assets/register-bg.jpg";
 import plate from "../../assets/plate.png";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const [focused, setFocused] = useState(false);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <Container>
       <FormWrapper>
@@ -13,7 +19,15 @@ const Register = () => {
         <Form>
           <InputField placeholder="username" />
           <InputField placeholder="email" />
-          <InputField placeholder="role" />
+          <LabelWrapper>
+            <p>Role:</p>
+            <select onChange={e => setRole(e.target.value)}>
+              <option value="all">Choose a role</option>
+              <option value="manager">Manager</option>
+              <option value="voluntair">Voluntair</option>
+              <option value="admin">Admin</option>
+            </select>
+          </LabelWrapper>
           <InputField placeholder="password" />
           <BtnWrapper>Register</BtnWrapper>
         </Form>
@@ -127,5 +141,25 @@ const BtnWrapper = styled.button`
     to {
       left: 100%;
     }
+  }
+`;
+
+const LabelWrapper = styled.label`
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 10px 0;
+  width: 200px;
+  outline: none;
+  font-size: 20px;
+  color: white;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  select {
+    font-size: 16px;
   }
 `;
