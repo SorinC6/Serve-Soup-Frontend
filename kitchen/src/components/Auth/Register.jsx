@@ -4,28 +4,25 @@ import bg from "../../assets/register-bg.jpg";
 import plate from "../../assets/plate.png";
 import { Link } from "react-router-dom";
 
-class Register extends Component {
-  state = {};
-  render() {
-    return (
-      <Container>
-        <FormWrapper>
-          <img src={plate} alt="logo" />
-          <h2>Register Account</h2>
-          <Form>
-            <InputField placeholder="username" />
-            <InputField placeholder="email" />
-            <InputField placeholder="role" />
-            <InputField placeholder="password" />
-          </Form>
-          <LinkWrapper to="/login">
-            Already have an account? Login Here
-          </LinkWrapper>
-        </FormWrapper>
-      </Container>
-    );
-  }
-}
+const Register = () => {
+  return (
+    <Container>
+      <FormWrapper>
+        <img src={plate} alt="logo" />
+        <h2>Register Account</h2>
+        <Form>
+          <InputField placeholder="username" />
+          <InputField placeholder="email" />
+          <InputField placeholder="role" />
+          <InputField placeholder="password" />
+        </Form>
+        <LinkWrapper to="/login">
+          Already have an account? Login Here
+        </LinkWrapper>
+      </FormWrapper>
+    </Container>
+  );
+};
 
 export default Register;
 
@@ -49,8 +46,19 @@ const FormWrapper = styled.div`
   color: white;
   background: grey;
   opacity: 0.8;
+  animation: enter 1.2s;
   img {
     max-width: 150px;
+  }
+
+  @keyframes enter {
+    from {
+      transform: translateX(-200px);
+      opacity: 0;
+    }
+    to {
+      transform: translate(0);
+    }
   }
 `;
 
@@ -73,4 +81,5 @@ const LinkWrapper = styled(Link)`
   margin-top: 5px;
   color: purple;
   text-decoration: none;
+  font-size: 14px;
 `;

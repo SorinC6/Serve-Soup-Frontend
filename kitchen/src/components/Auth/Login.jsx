@@ -4,26 +4,23 @@ import bg from "../../assets/login-bg.jpg";
 import plate from "../../assets/plate.png";
 import { Link } from "react-router-dom";
 
-class Login extends Component {
-  state = {};
-  render() {
-    return (
-      <Container>
-        <FormWrapper>
-          <img src={plate} alt="logo" />
-          <h2>Register Account</h2>
-          <Form>
-            <InputField placeholder="username" />
-            <InputField placeholder="password" />
-          </Form>
-          <LinkWrapper to="/register">
-            Don't have a account? Register Here
-          </LinkWrapper>
-        </FormWrapper>
-      </Container>
-    );
-  }
-}
+const Login = () => {
+  return (
+    <Container>
+      <FormWrapper>
+        <img src={plate} alt="logo" />
+        <h2>Register Account</h2>
+        <Form>
+          <InputField placeholder="username" />
+          <InputField placeholder="password" />
+        </Form>
+        <LinkWrapper to="/register">
+          Don't have a account? Register Here
+        </LinkWrapper>
+      </FormWrapper>
+    </Container>
+  );
+};
 
 export default Login;
 
@@ -47,8 +44,19 @@ const FormWrapper = styled.div`
   color: white;
   background: grey;
   opacity: 0.8;
+  animation: enter 1.3s;
   img {
     max-width: 150px;
+  }
+
+  @keyframes enter {
+    from {
+      transform: translateX(-200px);
+      opacity: 0;
+    }
+    to {
+      transform: translate(0);
+    }
   }
 `;
 
@@ -71,4 +79,5 @@ const LinkWrapper = styled(Link)`
   margin-top: 5px;
   color: purple;
   text-decoration: none;
+  font-size: 14px;
 `;
