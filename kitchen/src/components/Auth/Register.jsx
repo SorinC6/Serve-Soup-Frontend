@@ -3,6 +3,7 @@ import styled from "styled-components";
 import bg from "../../assets/register-bg.jpg";
 import plate from "../../assets/plate.png";
 import { Link } from "react-router-dom";
+import { registerUser } from "../../store/actions/actionAuth";
 
 const Register = () => {
   const [focused, setFocused] = useState(false);
@@ -11,12 +12,24 @@ const Register = () => {
   const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
 
+  const registerUser = e => {
+    e.preventDefault();
+    const userData = {
+      name: username,
+      password: password,
+      email: email,
+      role: role
+    };
+
+    console.log(userData);
+  };
+
   return (
     <Container>
       <FormWrapper>
         <img src={plate} alt="logo" />
         <h2>Register Account</h2>
-        <Form>
+        <Form onSubmit={registerUser}>
           <InputField
             placeholder="username"
             onFocus={() => setFocused(true)}
@@ -54,7 +67,7 @@ const Register = () => {
             pattern=".{6,}"
             onChange={e => setPassword(e.target.value)}
           />
-          <BtnWrapper>Register</BtnWrapper>
+          <BtnWrapper type="submit">Register</BtnWrapper>
         </Form>
         <LinkWrapper to="/login">
           Already have an account? Login Here
