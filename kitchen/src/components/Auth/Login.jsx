@@ -33,8 +33,6 @@ const Login = () => {
             pattern=".{6,}"
             title="Six or more characters"
             onChange={e => setPassword(e.target.value)}
-            type="password"
-            pattern=".{6,}"
           />
           <BtnWrapper>Login</BtnWrapper>
         </Form>
