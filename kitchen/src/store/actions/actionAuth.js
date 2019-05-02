@@ -13,7 +13,7 @@ export const registerUser = userData => dispatch => {
     })
     .catch(err => {
       dispatch({ type: types.REGISTER_USER_FAIL, payload: err.message });
-      console.log(err);
+      //console.log(err.error);
     });
 };
 

@@ -11,15 +11,17 @@ export const errors = (state = initialState, action) => {
     case types.REGISTER_USER_FAIL:
       return {
         ...state,
-        error: action.payload
+        loading: false,
+        error: `${action.payload} working!`
       };
     case types.LOGIN_USER_FAIL:
       return {
         ...state,
+        loading: false,
         error: action.payload
       };
     default:
-      return error;
+      return state;
   }
 };
 
@@ -48,5 +50,7 @@ export const loading = (state = initialState, action) => {
         error: null,
         username: action.username
       };
+    default:
+      return state;
   }
 };

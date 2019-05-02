@@ -4,8 +4,9 @@ import bg from "../../assets/register-bg.jpg";
 import plate from "../../assets/plate.png";
 import { Link } from "react-router-dom";
 import { registerUser } from "../../store/actions/actionAuth";
+import { connect } from "react-redux";
 
-const Register = () => {
+const Register = props => {
   const [focused, setFocused] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -22,7 +23,11 @@ const Register = () => {
     };
 
     console.log(userData);
+
+    props.registerUser(userData);
   };
+  console.log("REGISTER PROPS:Loading: ", props.loading);
+  console.log("REGISTER PROPS:Error: ", props.error);
 
   return (
     <Container>
@@ -65,6 +70,7 @@ const Register = () => {
             value={password}
             type="password"
             pattern=".{6,}"
+            autoComplete="off"
             onChange={e => setPassword(e.target.value)}
           />
           <BtnWrapper type="submit">Register</BtnWrapper>
@@ -77,7 +83,21 @@ const Register = () => {
   );
 };
 
-export default Register;
+const mapStateToProps = state => {
+  return {
+    loading: state.errors.loading,
+    error: state.errors.error
+  };
+};
+
+const mapDispatchToProps = {
+  registerUser
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Register);
 
 const Container = styled.div`
   background-image: url(${bg});

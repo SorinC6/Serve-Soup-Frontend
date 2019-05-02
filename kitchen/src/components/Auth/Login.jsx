@@ -32,6 +32,7 @@ const Login = () => {
             type="password"
             pattern=".{6,}"
             title="Six or more characters"
+            autoComplete="off"
             onChange={e => setPassword(e.target.value)}
           />
           <BtnWrapper>Login</BtnWrapper>
