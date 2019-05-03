@@ -21,12 +21,7 @@ export const register = (state = initialState, action) => {
         loading: false,
         error: `${action.payload} working!`
       };
-    case types.LOGIN_USER_FAIL:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
+
     case types.REGISTER_USER_START:
       return {
         ...state,
@@ -37,6 +32,20 @@ export const register = (state = initialState, action) => {
         ...state,
         loading: false,
         error: null
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const login = (state = initialState, action) => {
+  switch (action.type) {
+    case types.LOGIN_USER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
       };
     case types.LOGIN_USER_START:
       return {

@@ -3,18 +3,38 @@ import styled from "styled-components";
 import bg from "../../assets/login-bg.jpg";
 import plate from "../../assets/plate.png";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { loginUser } from "../../store/actions/actionAuth";
+import { ClipLoader } from "react-spinners";
 
-const Login = () => {
+const Login = props => {
   const [focused, setFocused] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const loginUser = e => {
+    e.preventDefault();
+
+    const userData = {
+      name: username,
+      password: password
+    };
+    console.log(userData);
+
+    props.loginUser(userData);
+  };
+
+  console.log("Login loading", props.loading);
+  console.log("Login error", props.error);
+  localStorage.getItem("token") && props.history.push("/home");
 
   return (
     <Container>
       <FormWrapper>
         <img src={plate} alt="logo" />
         <h2>Login Account</h2>
-        <Form>
+        <Form onSubmit={loginUser}>
           <InputField
             placeholder="username"
             onFocus={() => setFocused(true)}
@@ -35,17 +55,42 @@ const Login = () => {
             autoComplete="off"
             onChange={e => setPassword(e.target.value)}
           />
-          <BtnWrapper>Login</BtnWrapper>
+          <BtnWrapper type="submit">Login</BtnWrapper>
         </Form>
         <LinkWrapper to="/register">
           Don't have a account? Register Here
         </LinkWrapper>
       </FormWrapper>
+
+      <ErrorWrapper>
+        {props.loading && (
+          <ClipLoader
+            sizeUnit={"px"}
+            size={100}
+            color={"#123abc"}
+            // loading={this.state.loading}
+          />
+        )}
+      </ErrorWrapper>
     </Container>
   );
 };
 
-export default Login;
+const mapStateToProps = state => {
+  return {
+    loading: state.login.loading,
+    error: state.login.error
+  };
+};
+
+const mapDispatchToProps = {
+  loginUser
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Login));
 
 const Container = styled.div`
   background-image: url(${bg});
@@ -119,7 +164,7 @@ const BtnWrapper = styled.button`
   z-index: 1;
   overflow: hidden;
   font-weight: bold;
-
+  outline: none;
   &:before {
     content: "";
     background: black;
@@ -152,3 +197,5 @@ const BtnWrapper = styled.button`
     }
   }
 `;
+
+const ErrorWrapper = styled.div``;

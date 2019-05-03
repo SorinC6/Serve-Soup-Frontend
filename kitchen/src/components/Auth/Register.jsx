@@ -5,6 +5,7 @@ import plate from "../../assets/plate.png";
 import { Link } from "react-router-dom";
 import { registerUser } from "../../store/actions/actionAuth";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import { ClipLoader } from "react-spinners";
 
 const Register = props => {
@@ -13,7 +14,7 @@ const Register = props => {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
-  const [errorT, setErrorTime] = useState(false);
+  // const [errorT, setErrorTime] = useState(false);
 
   const registerUser = e => {
     e.preventDefault();
@@ -29,14 +30,7 @@ const Register = props => {
     props.registerUser(userData);
   };
 
-  const showError = () => {
-    setErrorTime(true);
-    setTimeout(() => {
-      setErrorTime(false);
-    }, 3000);
-  };
-  console.log("REGISTER PROPS:Loading: ", props.loading);
-  console.log("REGISTER PROPS:Error: ", props.error);
+  localStorage.getItem("email") && props.history.push("/login");
 
   return (
     <Container>
@@ -117,7 +111,7 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Register);
+)(withRouter(Register));
 
 const Container = styled.div`
   background-image: url(${bg});
@@ -246,6 +240,4 @@ const LabelWrapper = styled.label`
   }
 `;
 
-const ErrorWrapper = styled.div`
-  
-`;
+const ErrorWrapper = styled.div``;

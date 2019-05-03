@@ -8,8 +8,9 @@ export const registerUser = userData => dispatch => {
   axios
     .post(url.RegisterURL, userData)
     .then(res => {
-      console.log(res.data);
-      dispatch({ type: types.REGISTER_USER_SUCCESS, payload: res.data });
+      localStorage.setItem("email", res.data.email);
+      //console.log(res.data.email);
+      dispatch({ type: types.REGISTER_USER_SUCCESS, payload: res.data.email });
     })
     .catch(err => {
       dispatch({ type: types.REGISTER_USER_FAIL, payload: err.message });
@@ -24,7 +25,8 @@ export const loginUser = userData => dispatch => {
     .post(url.LoginURL, userData)
     .then(res => {
       console.log(res.data);
-      dispatch({ type: types.LOGIN_USER_START, payload: res.data });
+      localStorage.setItem("token", res.data.token);
+      dispatch({ type: types.LOGIN_USER_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: types.LOGIN_USER_FAIL, payload: err.message });
