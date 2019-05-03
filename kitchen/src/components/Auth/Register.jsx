@@ -3,22 +3,59 @@ import styled from "styled-components";
 import bg from "../../assets/register-bg.jpg";
 import plate from "../../assets/plate.png";
 import { Link } from "react-router-dom";
+import { registerUser } from "../../store/actions/actionAuth";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { ClipLoader } from "react-spinners";
 
-const Register = () => {
+const Register = props => {
   const [focused, setFocused] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
+  // const [errorT, setErrorTime] = useState(false);
+
+  const registerUser = e => {
+    e.preventDefault();
+    const userData = {
+      name: username,
+      password: password,
+      email: email,
+      role: role
+    };
+
+    console.log(userData);
+
+    props.registerUser(userData);
+  };
+
+  localStorage.getItem("email") && props.history.push("/login");
 
   return (
     <Container>
       <FormWrapper>
         <img src={plate} alt="logo" />
         <h2>Register Account</h2>
-        <Form>
-          <InputField placeholder="username" />
-          <InputField placeholder="email" />
+        <Form onSubmit={registerUser}>
+          <InputField
+            placeholder="username"
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            focused={focused}
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
+          <InputField
+            placeholder="email"
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            focused={focused}
+            value={email}
+            type="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            onChange={e => setEmail(e.target.value)}
+          />
           <LabelWrapper>
             <p>Role:</p>
             <select onChange={e => setRole(e.target.value)}>
@@ -28,23 +65,58 @@ const Register = () => {
               <option value="admin">Admin</option>
             </select>
           </LabelWrapper>
-          <InputField placeholder="password" />
-          <BtnWrapper>Register</BtnWrapper>
+          <InputField
+            placeholder="password"
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            focused={focused}
+            value={password}
+            type="password"
+            pattern=".{6,}"
+            autoComplete="off"
+            onChange={e => setPassword(e.target.value)}
+          />
+          <BtnWrapper type="submit">Register</BtnWrapper>
         </Form>
         <LinkWrapper to="/login">
           Already have an account? Login Here
         </LinkWrapper>
       </FormWrapper>
+
+      <ErrorWrapper>
+        {props.loading && (
+          <ClipLoader
+            sizeUnit={"px"}
+            size={100}
+            color={"#123abc"}
+            // loading={this.state.loading}
+          />
+        )}
+      </ErrorWrapper>
     </Container>
   );
 };
 
-export default Register;
+const mapStateToProps = state => {
+  return {
+    loading: state.register.loading,
+    error: state.register.error
+  };
+};
+
+const mapDispatchToProps = {
+  registerUser
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Register));
 
 const Container = styled.div`
   background-image: url(${bg});
   background-size: cover;
-  width: 100%;
+  max-width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -86,10 +158,13 @@ const Form = styled.form`
 const InputField = styled.input`
   padding: 7px;
   margin: 5px;
-  width: 200px;
+  width: ${props => (props.focused ? "220px" : "200px")};
   outline: none;
   font-size: 20px;
   color: purple;
+  background: ${props => (props.focused ? "white" : "#E8E8E8")};
+  border-radius: ${props => (props.focused ? "10px" : "5px")};
+  transition: all 1s;
 `;
 
 const LinkWrapper = styled(Link)`
@@ -160,6 +235,9 @@ const LabelWrapper = styled.label`
   }
 
   select {
-    font-size: 16px;
+    font-size: 14px;
+    padding: 10px;
   }
 `;
+
+const ErrorWrapper = styled.div``;
