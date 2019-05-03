@@ -5,6 +5,7 @@ import plate from "../../assets/plate.png";
 import { Link } from "react-router-dom";
 import { registerUser } from "../../store/actions/actionAuth";
 import { connect } from "react-redux";
+import { ClipLoader } from "react-spinners";
 
 const Register = props => {
   const [focused, setFocused] = useState(false);
@@ -12,6 +13,7 @@ const Register = props => {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
+  const [errorT, setErrorTime] = useState(false);
 
   const registerUser = e => {
     e.preventDefault();
@@ -25,6 +27,13 @@ const Register = props => {
     console.log(userData);
 
     props.registerUser(userData);
+  };
+
+  const showError = () => {
+    setErrorTime(true);
+    setTimeout(() => {
+      setErrorTime(false);
+    }, 3000);
   };
   console.log("REGISTER PROPS:Loading: ", props.loading);
   console.log("REGISTER PROPS:Error: ", props.error);
@@ -79,14 +88,25 @@ const Register = props => {
           Already have an account? Login Here
         </LinkWrapper>
       </FormWrapper>
+
+      <ErrorWrapper>
+        {props.loading && (
+          <ClipLoader
+            sizeUnit={"px"}
+            size={100}
+            color={"#123abc"}
+            // loading={this.state.loading}
+          />
+        )}
+      </ErrorWrapper>
     </Container>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    loading: state.errors.loading,
-    error: state.errors.error
+    loading: state.register.loading,
+    error: state.register.error
   };
 };
 
@@ -102,7 +122,7 @@ export default connect(
 const Container = styled.div`
   background-image: url(${bg});
   background-size: cover;
-  width: 100%;
+  max-width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -224,4 +244,8 @@ const LabelWrapper = styled.label`
     font-size: 14px;
     padding: 10px;
   }
+`;
+
+const ErrorWrapper = styled.div`
+  
 `;

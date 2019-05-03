@@ -6,7 +6,14 @@ const initialState = {
   username: ""
 };
 
-export const errors = (state = initialState, action) => {
+// export const errors = (state = initialState, action) => {
+//   switch (action.type) {
+//     default:
+//       return state;
+//   }
+// };
+
+export const register = (state = initialState, action) => {
   switch (action.type) {
     case types.REGISTER_USER_FAIL:
       return {
@@ -20,13 +27,6 @@ export const errors = (state = initialState, action) => {
         loading: false,
         error: action.payload
       };
-    default:
-      return state;
-  }
-};
-
-export const loading = (state = initialState, action) => {
-  switch (action.type) {
     case types.REGISTER_USER_START:
       return {
         ...state,
