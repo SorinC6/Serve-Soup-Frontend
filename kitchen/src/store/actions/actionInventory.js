@@ -8,8 +8,8 @@ export const getItems = () => dispatch => {
   axiosWithAuth()
     .get(url.getItems)
     .then(res => {
-      console.log(res.data);
-      dispatch({ type: types.GET_ITEMS_SUCCESS, payload: res.data });
+      //console.log(res.data.items);
+      dispatch({ type: types.GET_ITEMS_SUCCESS, payload: res.data.items });
     })
     .catch(err => {
       dispatch({ type: types.GET_ITEMS_FAIL, payload: err.message });

@@ -7,5 +7,6 @@ import { items } from "./inventoryReducer";
 export default combineReducers({
   register,
   login,
-  categoriesReducer
+  categoriesReducer,
+  items
 });
