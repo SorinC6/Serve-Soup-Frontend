@@ -12,3 +12,8 @@ export const LOGIN_USER_FAIL = "LOGIN_USER_FAIL";
 export const GET_CATEGORY_START = "GET_CATEGORY_START";
 export const GET_CATEGORY_SUCCESS = "GET_CATEGORY_SUCCESS";
 export const GET_CATEGORY_FAIL = "GET_CATEGORY_FAIL";
+
+// Items/Inventory action types
+export const GET_ITEMS_START = "GET_ITEMS_START";
+export const GET_ITEMS_SUCCESS = "GET_ITEMS_SUCCESS";
+export const GET_ITEMS_FAIL = "GET_ITEMS_FAIL";

@@ -11,8 +11,8 @@ const Home = props => {
     <div>
       <HeaderWrapper>
         <Header />
+        <input style={{ textAlign: "center" }} placeholder="search ..." />
       </HeaderWrapper>
-      <p style={{ textAlign: "center" }}>Search Component here for later</p>
       <MainView>
         <LeftView />
         <MiddleView />
@@ -28,6 +28,14 @@ export default withRouter(Home);
 const HeaderWrapper = styled.div`
   width: 100%;
   border: 1px solid green;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+
+  input {
+    width: 40%;
+    margin: 10px auto;
+  }
 `;
 
 const MainView = styled.div`
