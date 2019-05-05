@@ -2,7 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const MainCard = props => {
-  const { image, name, amount, unit } = props.data;
+  const { image, name, amount, unit, id } = props.data;
+
+  const onClickHandle = id => {
+    console.log(id);
+  };
   return (
     <CardWrapper>
       <img src={image} alt="item image missing" />
@@ -12,7 +16,7 @@ const MainCard = props => {
           Quantity:
           {amount} {unit}
         </p>
-        <button>Modify</button>
+        <button onClick={() => onClickHandle(id)}>Modify</button>
       </div>
     </CardWrapper>
   );
@@ -26,10 +30,19 @@ const CardWrapper = styled.div`
   height: 280px;
   position: relative;
   display: flex;
+  border-radius: 20px;
   justify-content: center;
   transition: all 0.5s;
   background: rgba(0, 0, 0, 0);
   overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
 
   button {
     padding: 10px;

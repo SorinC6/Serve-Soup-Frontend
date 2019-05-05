@@ -39,7 +39,6 @@ export default connect(
 const Wrapper = styled.div`
   background-color: #f0f8ff;
   width: 20%;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
 

@@ -40,5 +40,5 @@ const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 `;

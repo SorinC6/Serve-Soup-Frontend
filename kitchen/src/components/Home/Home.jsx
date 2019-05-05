@@ -27,7 +27,6 @@ export default withRouter(Home);
 
 const HeaderWrapper = styled.div`
   width: 100%;
-  border: 1px solid green;
   top: 0;
   display: flex;
   flex-direction: column;
@@ -40,6 +39,5 @@ const HeaderWrapper = styled.div`
 
 const MainView = styled.div`
   width: 100%;
-  border: 1px solid blue;
   display: flex;
 `;
