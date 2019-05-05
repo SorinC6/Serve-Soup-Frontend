@@ -27,7 +27,7 @@ const Login = props => {
 
   console.log("Login loading", props.loading);
   console.log("Login error", props.error);
-  localStorage.getItem("token") && props.history.push("/home");
+  localStorage.getItem("token") && props.history.push("/");
 
   return (
     <Container>

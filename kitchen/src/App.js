@@ -15,7 +15,7 @@ function App() {
 
         <Route
           exact
-          path="/home"
+          path="/"
           render={props =>
             localStorage.getItem("token") ? (
               <Home {...props} />
