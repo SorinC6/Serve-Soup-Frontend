@@ -1,20 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { getCategories } from "../../store/actions/actionCategory";
 
-const LeftView = () => {
+const LeftView = props => {
+  useEffect(() => {
+    props.getCategories();
+  }, []);
+
+  //console.log("CATEGORIES: ", props.categories);
+
   return (
     <Wrapper>
       <p>Ingredients List</p>
-      <button>Ingredient1</button>
-      <button>Ingredient1</button>
-      <button>Ingredient1</button>
-      <button>Ingredient1</button>
-      <button>Ingredient1</button>
+      {props.categories.map(cat => {
+        return <button key={cat.id}>{cat.name}</button>;
+      })}
     </Wrapper>
   );
 };
 
-export default LeftView;
+const mapStateToProps = state => {
+  return {
+    categories: state.categoriesReducer.cat,
+    loading: state.categoriesReducer.loading
+  };
+};
+
+const mapDIspatchToProps = {
+  getCategories
+};
+
+export default connect(
+  mapStateToProps,
+  mapDIspatchToProps
+)(LeftView);
 
 const Wrapper = styled.div`
   width: 20%;
@@ -43,7 +63,7 @@ const Wrapper = styled.div`
     width: 70%;
     margin: 3px auto;
     border-radius: 3px;
-
+    text-transform: lowercase;
     &:before {
       content: "";
       position: absolute;

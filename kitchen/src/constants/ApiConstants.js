@@ -7,3 +7,7 @@ export const LoginURL =
 //   "https://soup-kitchen-backend.herokuapp.com/api/items";
 // export const userListURL =
 //   "https://soup-kitchen-backend.herokuapp.com/api/staff";
+
+//getting all categories from database
+export const getCategories =
+  "https://kitchen-soup-backend.herokuapp.com/api/categories";
