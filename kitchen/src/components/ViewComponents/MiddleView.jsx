@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { getItems } from "../../store/actions/actionInventory";
+import MainCard from "../Common/MainCard";
 
 const MiddleView = props => {
   useEffect(() => {
@@ -12,7 +13,9 @@ const MiddleView = props => {
 
   return (
     <Wrapper>
-      <p>Cards</p>
+      {props.items.map(item => {
+        return <MainCard key={item.id} data={item} />;
+      })}
     </Wrapper>
   );
 };
@@ -34,5 +37,8 @@ export default connect(
 
 const Wrapper = styled.div`
   width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   border: 1px solid red;
 `;
