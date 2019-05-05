@@ -2,17 +2,22 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../Header/Header";
+import LeftView from "../ViewComponents/LeftView";
+import MiddleView from "../ViewComponents/MiddleView";
+import RightView from "../ViewComponents/RightView";
 
 const Home = props => {
-
-
   return (
     <div>
       <HeaderWrapper>
-
         <Header />
       </HeaderWrapper>
-      <MainView>LeftView MiddleView RightView</MainView>
+      <p style={{ textAlign: "center" }}>Search Component here for later</p>
+      <MainView>
+        <LeftView />
+        <MiddleView />
+        <RightView />
+      </MainView>
       <div />
     </div>
   );
@@ -28,9 +33,5 @@ const HeaderWrapper = styled.div`
 const MainView = styled.div`
   width: 100%;
   border: 1px solid blue;
-`;
-
-const LeftView = styled.div`
-  width: 20%;
-  border: 1px solid red;
+  display: flex;
 `;
