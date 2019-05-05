@@ -1,8 +1,10 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
-const Home = () => {
+const Home = props => {
   const logout = () => {
     localStorage.clear();
+    props.history.push("/login");
   };
 
   return (
@@ -13,4 +15,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withRouter(Home);
