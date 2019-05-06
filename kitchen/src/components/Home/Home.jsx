@@ -5,13 +5,14 @@ import Header from "../Header/Header";
 import LeftView from "../ViewComponents/LeftView";
 import MiddleView from "../ViewComponents/MiddleView";
 import RightView from "../ViewComponents/RightView";
+import Search from "../Search/Search";
 
 const Home = props => {
   return (
     <div>
       <HeaderWrapper>
         <Header />
-        <input style={{ textAlign: "center" }} placeholder="search ..." />
+        <Search />
       </HeaderWrapper>
       <MainView>
         <LeftView />

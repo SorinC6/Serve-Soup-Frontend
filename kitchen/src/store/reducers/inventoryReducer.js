@@ -8,7 +8,7 @@ const initialState = {
 
 export const items = (state = initialState, action) => {
   switch (action.type) {
-    case types.GET_ITEMS_FAIL:
+    case types.GET_ITEMS_START:
       return {
         ...state,
         loading: true,

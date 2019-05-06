@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { getItems } from "../../store/actions/actionInventory";
+import { getAllItems } from "../../store/actions/actionCategory";
 import MainCard from "../Common/MainCard";
 
 const MiddleView = props => {
   useEffect(() => {
-    props.getItems();
+    props.getAllItems();
   }, []);
 
   console.log(props.items);
 
   return (
     <Wrapper>
+      {!props.items.length && <h4>No Items in this Category</h4>}
       {props.items.map(item => {
         return <MainCard key={item.id} data={item} />;
       })}
@@ -22,12 +23,12 @@ const MiddleView = props => {
 
 const mapStateToProps = state => {
   return {
-    items: state.items.items
+    items: state.categoriesReducer.items
   };
 };
 
 const mapDispatchToProps = {
-  getItems
+  getAllItems
 };
 
 export default connect(

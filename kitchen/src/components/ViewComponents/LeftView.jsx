@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { getCategories } from "../../store/actions/actionCategory";
+import {
+  getCategories,
+  getAllItems,
+  getSpecificItems
+} from "../../store/actions/actionCategory";
 
 const LeftView = props => {
   useEffect(() => {
@@ -10,11 +14,25 @@ const LeftView = props => {
 
   //console.log("CATEGORIES: ", props.categories);
 
+  const handleCategory = id => {
+    console.log(id);
+
+    if (id === "-1") {
+      props.getAllItems();
+    } else {
+      props.getSpecificItems(id);
+    }
+  };
+
   return (
     <Wrapper>
       <p>Ingredients List</p>
       {props.categories.map(cat => {
-        return <button key={cat.id}>{cat.name}</button>;
+        return (
+          <button key={cat.id} onClick={() => handleCategory(cat.id)}>
+            {cat.name}
+          </button>
+        );
       })}
     </Wrapper>
   );
@@ -28,7 +46,9 @@ const mapStateToProps = state => {
 };
 
 const mapDIspatchToProps = {
-  getCategories
+  getCategories,
+  getAllItems,
+  getSpecificItems
 };
 
 export default connect(

@@ -9,7 +9,7 @@ const MainCard = props => {
   };
   return (
     <CardWrapper>
-      <img src={image} alt="item image missing" />
+      <img src={image} alt="item img missing" />
       <div>
         <h4>{name}</h4>
         <p>
@@ -27,7 +27,7 @@ export default MainCard;
 const CardWrapper = styled.div`
   margin: 20px;
   width: 220px;
-  height: 280px;
+  height: 260px;
   position: relative;
   display: flex;
   border-radius: 20px;
