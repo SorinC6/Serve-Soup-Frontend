@@ -34,17 +34,18 @@ export const items = (state = initialState, action) => {
 
 export const postItem = (state = initialState, action) => {
   switch (action.type) {
-    case types.ADD_ITEM_SUCCESS:
+    case types.ADD_ITEM_START:
       return {
         ...state,
         loading: true,
         error: null
       };
     case types.ADD_ITEM_SUCCESS:
+      console.log("Reducer, ", action.payload);
       return {
         ...state,
         loading: false,
-        items: state.items.concat(action.payload)
+        items: state.items.push(action.payload)
       };
     case types.ADD_ITEM_FAIL:
       return {
@@ -52,6 +53,7 @@ export const postItem = (state = initialState, action) => {
         loading: false,
         error: action.payload
       };
-      defaut: return state;
+    default:
+      return state;
   }
 };

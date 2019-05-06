@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { connect } from "react-redux";
 import { getCategories } from "../../store/actions/actionCategory";
+import { addItem } from "../../store/actions/actionInventory";
 import styled from "styled-components";
 import bg from "../../assets/add-bg.jpg";
 import ReactModal from "react-modal";
@@ -25,13 +26,13 @@ const AddForm = props => {
     e.preventDefault();
     const itemData = {
       name: name,
-      price: price,
       amount: parseInt(amount),
       unit: unit,
-      categoryId: selectedOption.value,
+      price: price,
+      categoryID: selectedOption.value,
       image: image,
-      supplierContact: supplierContact,
-      supplierName: supplierName
+      supplier_contact: supplierContact,
+      supplier_name: supplierName
     };
 
     if (itemData["image"] === "" || undefined) {
@@ -41,6 +42,10 @@ const AddForm = props => {
         ".jpg";
     }
     console.log(itemData);
+
+    props.addItem(itemData);
+    e.target.reset();
+    props.handleRequestCloseFunc();
   };
 
   const options = props.categories.map(obj => ({
@@ -142,7 +147,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  getCategories
+  getCategories,
+  addItem
 };
 
 export default connect(

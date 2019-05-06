@@ -76,3 +76,29 @@ export const categoriesReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export const postItem = (state = initialState, action) => {
+  switch (action.type) {
+    case types.ADD_ITEM_START:
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
+    case types.ADD_ITEM_SUCCESS:
+      console.log("Reducer, ", action.payload);
+      return {
+        ...state,
+        loading: false,
+        items: state.items.push(action.payload)
+      };
+    case types.ADD_ITEM_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      };
+    default:
+      return state;
+  }
+};
