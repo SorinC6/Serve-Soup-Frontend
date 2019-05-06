@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import AddFrom from "../ModifyInventory/AddForm";
 
-const RightView = () => {
+const RightView = props => {
+  const [showAddForm, setShowAddForm] = useState(false);
+  const handleAddInventory = () => {
+    setShowAddForm(true);
+  };
+
+  const closeModal = () => {
+    setShowAddForm(false);
+  };
+
   return (
     <Wrapper>
       <button>View Inventory</button>
-      <button>Add Inventory</button>
+      <button onClick={handleAddInventory}>Add Inventory</button>
       <button>Soup Kitchens</button>
+      <AddFrom
+        handlingModal={showAddForm}
+        handleRequestCloseFunc={closeModal}
+      />
     </Wrapper>
   );
 };

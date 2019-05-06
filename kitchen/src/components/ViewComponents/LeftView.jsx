@@ -61,7 +61,7 @@ const Wrapper = styled.div`
   width: 20%;
   display: flex;
   flex-direction: column;
-
+  z-index: 10;
   p {
     text-align: center;
     font-size: 20px;
