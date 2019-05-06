@@ -9,7 +9,7 @@ const MiddleView = props => {
     props.getAllItems();
   }, []);
 
-  console.log(props.items);
+  // console.log(props.items);
 
   return (
     <Wrapper>
