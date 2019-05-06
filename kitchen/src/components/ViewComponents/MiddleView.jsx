@@ -1,17 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { getAllItems } from "../../store/actions/actionCategory";
+import MainCard from "../Common/MainCard";
 
-const MiddleView = () => {
+const MiddleView = props => {
+  useEffect(() => {
+    props.getAllItems();
+  }, []);
+
+  // console.log(props.items);
+
   return (
     <Wrapper>
-      <p>Cards</p>
+      {!props.items.length && <h4>No Items in this Category</h4>}
+      {props.items.map(item => {
+        return <MainCard key={item.id} data={item} />;
+      })}
     </Wrapper>
   );
 };
 
-export default MiddleView;
+const mapStateToProps = state => {
+  return {
+    items: state.categoriesReducer.items
+  };
+};
+
+const mapDispatchToProps = {
+  getAllItems
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MiddleView);
 
 const Wrapper = styled.div`
   width: 60%;
-  border: 1px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  /* border: 1px solid red; */
 `;

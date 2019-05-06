@@ -11,3 +11,6 @@ export const LoginURL =
 //getting all categories from database
 export const getCategories =
   "https://kitchen-soup-backend.herokuapp.com/api/categories";
+
+// getting all items from inventory
+export const getItems = "https://kitchen-soup-backend.herokuapp.com/api/items";

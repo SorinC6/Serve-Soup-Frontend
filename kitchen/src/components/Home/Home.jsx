@@ -5,14 +5,15 @@ import Header from "../Header/Header";
 import LeftView from "../ViewComponents/LeftView";
 import MiddleView from "../ViewComponents/MiddleView";
 import RightView from "../ViewComponents/RightView";
+import Search from "../Search/Search";
 
 const Home = props => {
   return (
     <div>
       <HeaderWrapper>
         <Header />
+        <Search />
       </HeaderWrapper>
-      <p style={{ textAlign: "center" }}>Search Component here for later</p>
       <MainView>
         <LeftView />
         <MiddleView />
@@ -27,11 +28,17 @@ export default withRouter(Home);
 
 const HeaderWrapper = styled.div`
   width: 100%;
-  border: 1px solid green;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+
+  input {
+    width: 40%;
+    margin: 10px auto;
+  }
 `;
 
 const MainView = styled.div`
   width: 100%;
-  border: 1px solid blue;
   display: flex;
 `;
