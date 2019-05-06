@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import AddFrom from "../ModifyInventory/AddForm";
+import { withRouter } from "react-router-dom";
 
 const RightView = props => {
   const [showAddForm, setShowAddForm] = useState(false);
   const handleAddInventory = () => {
     setShowAddForm(true);
+  };
+
+  const handleBack = () => {
+    props.history.push("/");
   };
 
   const closeModal = () => {
@@ -14,7 +19,7 @@ const RightView = props => {
 
   return (
     <Wrapper>
-      <button>View Inventory</button>
+      <button onClick={handleBack}>View Inventory</button>
       <button onClick={handleAddInventory}>Add Inventory</button>
       <button>Soup Kitchens</button>
       <AddFrom
@@ -25,7 +30,7 @@ const RightView = props => {
   );
 };
 
-export default RightView;
+export default withRouter(RightView);
 
 const Wrapper = styled.div`
   width: 20%;

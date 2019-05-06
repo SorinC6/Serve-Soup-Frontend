@@ -33,3 +33,17 @@ export const addItem = itemData => dispatch => {
       dispatch({ type: types.ADD_ITEM_FAIL, payload: err });
     });
 };
+
+export const getItemById = id => dispatch => {
+  dispatch({ type: types.GET_CATEGORY_ID_START });
+
+  axiosWithAuth()
+    .get(`${url.getbyId}/${id}`)
+    .then(res => {
+      //console.log(res.data.item);
+      dispatch({ type: types.GET_CATEGORY_ID_SUCCESS, payload: res.data.item });
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+};

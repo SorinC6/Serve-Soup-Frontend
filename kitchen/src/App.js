@@ -4,6 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Home from "./components/Home/Home";
+import SingleCard from "./components/Inventory/SingleCard";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         {/* <Route path="/home" component={Home} /> */}
+        <Route path="/item/:id" component={SingleCard} />
 
         <Route
           exact

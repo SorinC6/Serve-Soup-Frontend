@@ -176,8 +176,8 @@ const content = {
   background: "	#F0FFFF",
   overflow: "auto",
   WebkitOverflowScrolling: "touch",
-  outline: "none",
-  background: `url(${bg})`
+  background: `url(${bg})`,
+  outline: "none"
 };
 
 const StyledForm = styled.form`
@@ -186,7 +186,7 @@ const StyledForm = styled.form`
 `;
 
 const Heading = styled.h3`
-  color: black;
+  color: white;
   text-align: center;
 `;
 

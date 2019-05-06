@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const MainCard = props => {
   const { image, name, amount, unit, id } = props.data;
 
-  const onClickHandle = id => {
-    console.log(id);
-  };
+  // const onClickHandle = id => {
+  //   console.log(id);
+  // };
   return (
     <CardWrapper>
       <img src={image} alt="item img missing" />
@@ -16,7 +17,7 @@ const MainCard = props => {
           Quantity:
           {amount} {unit}
         </p>
-        <button onClick={() => onClickHandle(id)}>Modify</button>
+        <Link to={`/item/${id}`}>Modify</Link>
       </div>
     </CardWrapper>
   );

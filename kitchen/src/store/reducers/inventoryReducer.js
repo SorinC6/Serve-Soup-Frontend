@@ -3,7 +3,33 @@ import * as types from "../actions/actionTypes";
 const initialState = {
   items: [],
   error: null,
-  loading: false
+  loading: false,
+  item: []
+};
+
+export const getById = (state = initialState, action) => {
+  switch (action.type) {
+    case types.GET_CATEGORY_ID_FAIL:
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
+    case types.GET_CATEGORY_ID_SUCCESS:
+      return {
+        ...state,
+        item: action.payload,
+        loading: false
+      };
+    case types.GET_CATEGORY_ID_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false
+      };
+    default:
+      return state;
+  }
 };
 
 export const items = (state = initialState, action) => {

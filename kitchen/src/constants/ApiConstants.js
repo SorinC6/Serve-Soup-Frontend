@@ -17,3 +17,6 @@ export const getItems = "https://kitchen-soup-backend.herokuapp.com/api/items";
 
 //Post item to database
 export const postItem = "https://kitchen-soup-backend.herokuapp.com/api/items";
+
+//Get Item by Id
+export const getbyId = "https://kitchen-soup-backend.herokuapp.com/api/items";
