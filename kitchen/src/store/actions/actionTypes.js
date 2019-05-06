@@ -28,5 +28,10 @@ export const GET_ITEMS_START = "GET_ITEMS_START";
 export const GET_ITEMS_SUCCESS = "GET_ITEMS_SUCCESS";
 export const GET_ITEMS_FAIL = "GET_ITEMS_FAIL";
 
+// Add Items to Inventory types
+export const ADD_ITEM_START="ADD_ITEM_START"
+export const ADD_ITEM_SUCCESS="ADD_ITEM_SUCCESS"
+export const ADD_ITEM_FAIL="ADD_ITEM_FAIL"
+
 //Search Items action types
 export const SEARCH_ITEM = "SEARCH_ITEM";

@@ -15,3 +15,18 @@ export const getItems = () => dispatch => {
       dispatch({ type: types.GET_ITEMS_FAIL, payload: err.message });
     });
 };
+
+
+export const getItems = (itemData) => dispatch => {
+  dispatch({ type: types.ADD_ITEM_START });
+
+  axiosWithAuth()
+    .get(url.postItem)
+    .then(res => {
+      console.log(res.data);
+      dispatch({ type: types.ADD_ITEM_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: types.ADD_ITEM_FAIL, payload: err.message });
+    });
+};

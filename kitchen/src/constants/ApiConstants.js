@@ -14,3 +14,6 @@ export const getCategories =
 
 // getting all items from inventory
 export const getItems = "https://kitchen-soup-backend.herokuapp.com/api/items";
+
+//Post item to database
+export const postItem = "https://kitchen-soup-backend.herokuapp.com/api/items";

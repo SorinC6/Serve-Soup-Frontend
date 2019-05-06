@@ -3,14 +3,13 @@ import Select from "react-select";
 import { connect } from "react-redux";
 import { getCategories } from "../../store/actions/actionCategory";
 import styled from "styled-components";
-// import bg from "../../assets/login-bg.jpg";
+import bg from "../../assets/add-bg.jpg";
 import ReactModal from "react-modal";
+import "./modal.css";
 
 const AddForm = props => {
-  //   const [categories, setCategories] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [name, setName] = useState("");
-  //   const [CategoryId, setCategoryId] = useState("");
   const [price, setPrice] = useState("");
   const [amount, setAmount] = useState("");
   const [unit, setUnit] = useState("");
@@ -22,22 +21,42 @@ const AddForm = props => {
     props.getCategories();
   }, []);
 
-  //console.log(props.categories);
+  const handleAddInventory = e => {
+    e.preventDefault();
+    const itemData = {
+      name: name,
+      price: price,
+      amount: parseInt(amount),
+      unit: unit,
+      categoryId: selectedOption.value,
+      image: image,
+      supplierContact: supplierContact,
+      supplierName: supplierName
+    };
+
+    if (itemData["image"] === "" || undefined) {
+      itemData["image"] =
+        "https://spoonacular.com/cdn/ingredients_500x500/" +
+        itemData["name"].toLowerCase() +
+        ".jpg";
+    }
+    console.log(itemData);
+  };
 
   const options = props.categories.map(obj => ({
     value: obj.id,
     label: obj.name
   }));
 
-  //console.log(options);
   return (
     <ReactModal
       ariaHideApp={false}
       isOpen={props.handlingModal}
       style={{ overlay, content }}
       onRequestClose={props.handleRequestCloseFunc}
+      closeTimeoutMS={1500}
     >
-      <StyledForm autoComplete="off">
+      <StyledForm autoComplete="off" onSubmit={handleAddInventory}>
         <Heading>Add new item</Heading>
         <InputField
           required
@@ -69,7 +88,7 @@ const AddForm = props => {
         <InputField
           required
           value={price}
-          onChange={e => setPrice(e.target.price)}
+          onChange={e => setPrice(e.target.value)}
           name="price"
           type="text"
           placeholder="Enter item price"
@@ -86,7 +105,6 @@ const AddForm = props => {
         </SelectField>
 
         <InputField
-          required
           value={image}
           onChange={e => setImage(e.target.value)}
           name="img_url"
@@ -94,8 +112,24 @@ const AddForm = props => {
           placeholder="Enter image URL"
         />
 
-        <Button>Add new item</Button>
-        <Button>Cancel</Button>
+        <InputField
+          value={supplierContact}
+          onChange={e => setSupplierContact(e.target.value)}
+          name="supplierContact"
+          type="text"
+          placeholder="Enter Supplier contact"
+        />
+
+        <InputField
+          value={supplierName}
+          onChange={e => setSupplierName(e.target.value)}
+          name="supplierName"
+          type="text"
+          placeholder="Enter Suppllier Name"
+        />
+
+        <Button type="submit">Add new item</Button>
+        <Button onClick={props.handleRequestCloseFunc}>Cancel</Button>
       </StyledForm>
     </ReactModal>
   );
@@ -128,7 +162,7 @@ const overlay = {
 const content = {
   position: "absolute",
   maxWidth: "50%",
-  height: "550px",
+  maxHeight: "550px",
   margin: "20px auto",
   padding: "20px 40px",
   borderRadius: "10px",
@@ -136,7 +170,8 @@ const content = {
   background: "	#F0FFFF",
   overflow: "auto",
   WebkitOverflowScrolling: "touch",
-  outline: "none"
+  outline: "none",
+  background: `url(${bg})`
 };
 
 const StyledForm = styled.form`
@@ -152,12 +187,14 @@ const Heading = styled.h3`
 const InputField = styled.input`
   padding: 15px 10px;
   width: 60%;
-  background: Brown;
+  background: brown;
+  opacity: 0.6;
   margin: 10px auto;
   font-size: 16px;
   outline: none;
   color: white;
   font-family: "Ubuntu", sans-serif;
+  border-radius: 5px;
 `;
 const Button = styled.button`
   margin-top: 1.5rem;
@@ -165,7 +202,7 @@ const Button = styled.button`
   border: 0;
   width: 60%;
   margin: 10px auto;
-  height: 4rem;
+  height: 2rem;
   border-radius: 0.3rem;
   color: #29f3db;
   cursor: pointer;
@@ -183,9 +220,14 @@ const Button = styled.button`
 
 const SelectField = styled.div`
   width: 60%;
-  background: #161c24;
+  background: brown;
+  opacity: 0.8;
   margin: 20px auto;
   outline: none;
   height: 20px;
   font-family: "Ubuntu", sans-serif;
+
+  select {
+    background: transparent;
+  }
 `;

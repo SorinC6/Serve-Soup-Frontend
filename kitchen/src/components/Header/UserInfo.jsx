@@ -43,7 +43,7 @@ const Wrapper = styled.div`
     color: white;
 
     &:before {
-      content: "Hover me";
+      content: "Leave";
       position: absolute;
       top: 0;
       left: 0;
