@@ -13,7 +13,11 @@ const DetailCard = props => {
   } = props.item;
   return (
     <Wrapper>
-      <img src={image} alt="itemImg" />
+      <ImageSection>
+        <img src={image} alt="itemImg" />
+        <button>Delete</button>
+        <button>Update</button>
+      </ImageSection>
       <DetailItem>
         <h1>{name}</h1>
         <h3>Price: {price} $</h3>
@@ -51,10 +55,11 @@ const Wrapper = styled.div`
   }
 
   @media (max-width: 860px) {
+    width: 90%;
     margin-left: 10px;
     font-size: 15px;
     flex-direction: column;
-    height: 450px;
+    height: 520px;
     margin-left: 20px;
   }
   img {
@@ -87,5 +92,32 @@ const AmountMod = styled.div`
     margin: 5px 10px;
     outline: none;
     font-size: 30px;
+    transition: all 1.2s;
+
+    &:hover {
+      background: black;
+      color: white;
+      font-weight: bold;
+    }
+  }
+`;
+
+const ImageSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  button {
+    padding: 10px;
+    margin: 3px;
+    width: 80%;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 1.2s;
+
+    &:hover {
+      background: black;
+      color: white;
+      font-weight: bold;
+    }
   }
 `;
