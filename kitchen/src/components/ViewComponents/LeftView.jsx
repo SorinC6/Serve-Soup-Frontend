@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+
 import {
   getCategories,
   getAllItems,
@@ -61,7 +62,7 @@ const Wrapper = styled.div`
   width: 20%;
   display: flex;
   flex-direction: column;
-
+  z-index: 10;
   p {
     text-align: center;
     font-size: 20px;
@@ -84,6 +85,7 @@ const Wrapper = styled.div`
     margin: 3px auto;
     border-radius: 3px;
     text-transform: lowercase;
+    cursor: pointer;
     &:before {
       content: "";
       position: absolute;

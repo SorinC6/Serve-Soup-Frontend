@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const MainCard = props => {
   const { image, name, amount, unit, id } = props.data;
 
-  const onClickHandle = id => {
-    console.log(id);
-  };
+  // const onClickHandle = id => {
+  //   console.log(id);
+  // };
   return (
     <CardWrapper>
       <img src={image} alt="item img missing" />
@@ -16,7 +17,7 @@ const MainCard = props => {
           Quantity:
           {amount} {unit}
         </p>
-        <button onClick={() => onClickHandle(id)}>Modify</button>
+        <LinkWrapper to={`/item/${id}`}>Modify</LinkWrapper>
       </div>
     </CardWrapper>
   );
@@ -90,5 +91,19 @@ const CardWrapper = styled.div`
     opacity: 1;
     background: rgba(0, 0, 0, 0.7);
     transform: translateY(0);
+  }
+`;
+
+const LinkWrapper = styled(Link)`
+  border: 2px solid black;
+  color: white;
+  text-decoration: none;
+  padding: 5px 13px;
+  font-size: 18px;
+  transition: 1s all;
+  &:hover {
+    background: lightcyan;
+    color: black;
+    border-radius: 10px;
   }
 `;

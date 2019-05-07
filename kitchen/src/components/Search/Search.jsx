@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { search } from "../../store/actions/actionSearch";
@@ -30,10 +30,8 @@ export default connect(
 
 const Wrapper = styled.div`
   width: 100%;
-  border: 1px solid balck;
   display: flex;
   justify-content: center;
-  padding: 10px;
   background: lightgoldenrodyellow;
 
   input {

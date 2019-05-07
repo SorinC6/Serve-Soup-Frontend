@@ -28,5 +28,20 @@ export const GET_ITEMS_START = "GET_ITEMS_START";
 export const GET_ITEMS_SUCCESS = "GET_ITEMS_SUCCESS";
 export const GET_ITEMS_FAIL = "GET_ITEMS_FAIL";
 
+// Add Items to Inventory types
+export const ADD_ITEM_START = "ADD_ITEM_START";
+export const ADD_ITEM_SUCCESS = "ADD_ITEM_SUCCESS";
+export const ADD_ITEM_FAIL = "ADD_ITEM_FAIL";
+
+//Get item by id
+export const GET_ITEM_ID_START = "GET_ITEM_ID_START";
+export const GET_ITEM_ID_SUCCESS = "GET_ITEM_ID_SUCCESS";
+export const GET_ITEM_ID_FAIL = "GET_ITEM_ID_FAIL";
+
+//Delete item from database
+export const DETELE_ITEM_START = "DETELE_ITEM_START";
+export const DETELE_ITEM_SUCCESS = "DETELE_ITEM_SUCCESS";
+export const DETELE_ITEM_FAIL = "DETELE_ITEM_FAIL";
+
 //Search Items action types
 export const SEARCH_ITEM = "SEARCH_ITEM";
