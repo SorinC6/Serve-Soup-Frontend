@@ -16,7 +16,6 @@ const SingleCard = props => {
   return (
     <div>
       <Header />
-
       <Wrapper>
         <DetailCard item={props.item} />
         <LeftView />
@@ -40,4 +39,5 @@ export default connect(
 
 const Wrapper = styled.div`
   display: flex;
+  justify-content: space-between;
 `;

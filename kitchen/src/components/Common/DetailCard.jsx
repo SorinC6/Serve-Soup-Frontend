@@ -35,14 +35,37 @@ const DetailCard = props => {
 export default DetailCard;
 
 const Wrapper = styled.div`
-  margin: 20px;
-  width: 80%;
-  border: 1px solid black;
+  margin: 50px 20px;
+  width: 50%;
+  height: 400px;
+  margin-left: 250px;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 1s;
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 860px) {
+    margin-left: 10px;
+    font-size: 15px;
+    flex-direction: column;
+    height: 450px;
+    margin-left: 20px;
+  }
   img {
     max-width: 250px;
     height: 300px;
+    border-radius: 10px;
+
+    @media (max-width: 860px) {
+      max-width: 200px;
+      height: auto;
+    }
   }
 `;
 
@@ -50,6 +73,9 @@ const DetailItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  h1 {
+    text-transform: uppercase;
+  }
 `;
 
 const AmountMod = styled.div`
