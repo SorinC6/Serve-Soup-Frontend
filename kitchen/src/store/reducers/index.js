@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 //import reducers
 import { register, login } from "./authReducers";
 import { categoriesReducer } from "./categoryReducer";
-import { items, postItem, getById } from "./inventoryReducer";
+import { items, postItem, getById, deleteItem } from "./inventoryReducer";
 
 export default combineReducers({
   register,
@@ -10,5 +10,6 @@ export default combineReducers({
   categoriesReducer,
   items,
   postItem,
-  getById
+  getById,
+  deleteItem
 });

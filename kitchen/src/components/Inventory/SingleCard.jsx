@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Header from "../Header/Header";
 import LeftView from "../ViewComponents/RightView";
 import { connect } from "react-redux";
-import { getItemById } from "../../store/actions/actionInventory";
+import { getItemById, deleteItem } from "../../store/actions/actionInventory";
 import styled from "styled-components";
 import DetailCard from "../Common/DetailCard";
 
@@ -12,12 +12,12 @@ const SingleCard = props => {
     props.getItemById(id);
   }, []);
 
-  console.log("propspsps ", props.item);
+  //console.log("propspsps ", props.item);
   return (
     <div>
       <Header />
       <Wrapper>
-        <DetailCard item={props.item} />
+        <DetailCard item={props.item} deleteItem={props.deleteItem} />
         <LeftView />
       </Wrapper>
     </div>
@@ -30,7 +30,10 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = { getItemById };
+const mapDispatchToProps = {
+  getItemById,
+  deleteItem
+};
 
 export default connect(
   mapStateToProps,

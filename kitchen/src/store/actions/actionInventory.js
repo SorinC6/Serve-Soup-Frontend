@@ -47,3 +47,18 @@ export const getItemById = id => dispatch => {
       console.log(err.message);
     });
 };
+
+export const deleteItem = id => dispatch => {
+  dispatch({ type: types.DETELE_ITEM_START });
+
+  axiosWithAuth()
+    .delete(`${url.deleteUrl}/${id}`)
+    .then(res => {
+      console.log(res.data);
+      dispatch({ type: types.DETELE_ITEM_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: types.DETELE_ITEM_FAIL, payload: err.message });
+      console.log(err.message);
+    });
+};

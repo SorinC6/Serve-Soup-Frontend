@@ -38,5 +38,10 @@ export const GET_ITEM_ID_START = "GET_ITEM_ID_START";
 export const GET_ITEM_ID_SUCCESS = "GET_ITEM_ID_SUCCESS";
 export const GET_ITEM_ID_FAIL = "GET_ITEM_ID_FAIL";
 
+//Delete item from database
+export const DETELE_ITEM_START = "DETELE_ITEM_START";
+export const DETELE_ITEM_SUCCESS = "DETELE_ITEM_SUCCESS";
+export const DETELE_ITEM_FAIL = "DETELE_ITEM_FAIL";
+
 //Search Items action types
 export const SEARCH_ITEM = "SEARCH_ITEM";

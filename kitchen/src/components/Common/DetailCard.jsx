@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
 
 const DetailCard = props => {
   const {
+    id,
     image,
     name,
     price,
@@ -15,7 +17,14 @@ const DetailCard = props => {
     <Wrapper>
       <ImageSection>
         <img src={image} alt="itemImg" />
-        <button>Delete</button>
+        <button
+          onClick={() => {
+            props.deleteItem(id);
+            props.history.push("/");
+          }}
+        >
+          Delete
+        </button>
         <button>Update</button>
       </ImageSection>
       <DetailItem>
@@ -36,7 +45,7 @@ const DetailCard = props => {
   );
 };
 
-export default DetailCard;
+export default withRouter(DetailCard);
 
 const Wrapper = styled.div`
   margin: 50px 20px;
@@ -49,6 +58,7 @@ const Wrapper = styled.div`
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background: AliceBlue;
   transition: all 1s;
   &:hover {
     transform: scale(1.1);
@@ -68,6 +78,7 @@ const Wrapper = styled.div`
     border-radius: 10px;
 
     @media (max-width: 860px) {
+      margin-top: 20px;
       max-width: 200px;
       height: auto;
     }

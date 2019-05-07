@@ -20,3 +20,7 @@ export const postItem = "https://kitchen-soup-backend.herokuapp.com/api/items";
 
 //Get Item by Id
 export const getbyId = "https://kitchen-soup-backend.herokuapp.com/api/items";
+
+//Delete Item by Id
+export const deleteUrl =
+  "https://kitchen-soup-backend.herokuapp.com/api/items";
