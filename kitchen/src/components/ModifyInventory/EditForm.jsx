@@ -6,6 +6,7 @@ import styled from "styled-components";
 import bg from "../../assets/add-bg.jpg";
 import ReactModal from "react-modal";
 import "./modal.css";
+import { withRouter } from "react-router-dom";
 
 const EditForm = props => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -36,30 +37,21 @@ const EditForm = props => {
       amount,
       unit,
       image,
-      categoryID: selectedOption,
+      categoryID: selectedOption.value,
       supplier_contact: supplierContact,
       supplier_name: supplierName
     };
-    console.log(itemData);
 
-    
+    props.updateItem(props.item.id, itemData);
+    props.handleRequestCloseFunc();
+    props.history.push("/");
   };
 
-  // const populateFields = () => {
-  //   setName(props.item.name);
-  //   setPrice(props.item.price);
-  //   setAmount(props.item.amount);
-  //   setUnit(props.item.unit);
-  // };
-
   const options = props.categories.map(obj => ({
-    value: obj.categoryID,
+    value: obj.id,
     label: obj.name
   }));
-  //console.log("Option: ", options);
-
-  console.log("PROPS ", props.item);
-
+  console.log("Option: ", options);
 
   return (
     <ReactModal
@@ -161,7 +153,7 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(EditForm);
+)(withRouter(EditForm));
 
 const overlay = {
   position: "fixed",

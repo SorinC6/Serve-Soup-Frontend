@@ -1,7 +1,7 @@
 import * as types from "./actionTypes";
 import * as url from "../../constants/ApiConstants";
 import axiosWithAuth from "../axios/index";
-import { getAllItems } from "./actionCategory";
+import { getAllItems, getSpecificItems } from "./actionCategory";
 
 // export const getItems = () => dispatch => {
 //   dispatch({ type: types.GET_ITEMS_START });
@@ -70,6 +70,8 @@ export const updateItem = (id, itemData) => dispatch => {
     .put(`${url.updateURL}/${id}`, itemData)
     .then(res => {
       console.log(res.data);
+      getItemById(id);
+      getSpecificItems(id);
       dispatch({ type: types.UPDATE_ITEM_SUCCESS });
     })
     .catch(err => {
