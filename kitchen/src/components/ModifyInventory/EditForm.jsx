@@ -22,6 +22,7 @@ const EditForm = props => {
     setPrice(props.item.price);
     setAmount(props.item.amount);
     setUnit(props.item.unit);
+    setImage(props.item.image);
     setSelectedOption(props.item.categoryID);
     setSupplierContact(props.item.supplier_contact);
     setSupplierName(props.item.supplier_name);
@@ -40,6 +41,8 @@ const EditForm = props => {
       supplier_name: supplierName
     };
     console.log(itemData);
+
+    
   };
 
   // const populateFields = () => {
@@ -56,6 +59,7 @@ const EditForm = props => {
   //console.log("Option: ", options);
 
   console.log("PROPS ", props.item);
+
 
   return (
     <ReactModal
