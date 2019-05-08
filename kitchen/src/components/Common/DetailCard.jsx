@@ -25,7 +25,7 @@ const DetailCard = props => {
         >
           Delete
         </button>
-        <button>Update</button>
+        <button onClick={props.showEditForm}>Update</button>
       </ImageSection>
       <DetailItem>
         <h1>{name}</h1>

@@ -8,7 +8,7 @@ import bg from "../../assets/add-bg.jpg";
 import ReactModal from "react-modal";
 import "./modal.css";
 
-const AddForm = props => {
+const EditForm = props => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -18,40 +18,19 @@ const AddForm = props => {
   const [supplierContact, setSupplierContact] = useState("");
   const [supplierName, setSupplierName] = useState("");
 
-  useEffect(() => {
-    props.getCategories();
-  }, []);
+  useEffect(() => {}, []);
 
-  const handleAddInventory = e => {
+  const handleEditInfo = e => {
     e.preventDefault();
-    const itemData = {
-      name: name,
-      amount: parseInt(amount),
-      unit: unit,
-      price: price,
-      categoryID: selectedOption.value,
-      image: image,
-      supplier_contact: supplierContact,
-      supplier_name: supplierName
-    };
-
-    if (itemData["image"] === "" || undefined) {
-      itemData["image"] =
-        "https://spoonacular.com/cdn/ingredients_500x500/" +
-        itemData["name"].toLowerCase() +
-        ".jpg";
-    }
-    console.log(itemData);
-
-    props.addItem(itemData);
-    e.target.reset();
-    props.handleRequestCloseFunc();
   };
 
   const options = props.categories.map(obj => ({
-    value: obj.id,
+    value: obj.categoryID,
     label: obj.name
   }));
+  console.log("Option: ", options);
+
+  console.log(props.item);
 
   return (
     <ReactModal
@@ -61,11 +40,11 @@ const AddForm = props => {
       onRequestClose={props.handleRequestCloseFunc}
       closeTimeoutMS={1500}
     >
-      <StyledForm autoComplete="off" onSubmit={handleAddInventory}>
-        <Heading>Add new item</Heading>
+      <StyledForm autoComplete="off" onSubmit={handleEditInfo}>
+        <Heading>Edit Item</Heading>
         <InputField
           required
-          value={name}
+          value={props.item.name}
           onChange={e => setName(e.target.value)}
           name="name"
           type="text"
@@ -74,7 +53,7 @@ const AddForm = props => {
 
         <InputField
           required
-          value={amount}
+          value={props.item.amount}
           onChange={e => setAmount(e.target.value)}
           name="amount"
           type="text"
@@ -83,16 +62,16 @@ const AddForm = props => {
 
         <InputField
           required
-          value={unit}
+          value={props.item.unit}
           onChange={e => setUnit(e.target.value)}
           name="unit"
           type="text"
           placeholder="Enter item unit"
         />
-
+      
         <InputField
           required
-          value={price}
+          value={props.item.price}
           onChange={e => setPrice(e.target.value)}
           name="price"
           type="text"
@@ -101,16 +80,16 @@ const AddForm = props => {
 
         <SelectField>
           <Select
-            placeholder="Chose a category"
+            placeholder={'Category name'}
             menuPlacement="top"
-            value={selectedOption}
+            value={props.item.categoryID}
             onChange={selectedOption => setSelectedOption(selectedOption)}
             options={options}
           />
         </SelectField>
 
         <InputField
-          value={image}
+          value={props.item.image}
           onChange={e => setImage(e.target.value)}
           name="img_url"
           type="text"
@@ -118,7 +97,7 @@ const AddForm = props => {
         />
 
         <InputField
-          value={supplierContact}
+          value={props.item.supplier_contact}
           onChange={e => setSupplierContact(e.target.value)}
           name="supplierContact"
           type="text"
@@ -126,14 +105,14 @@ const AddForm = props => {
         />
 
         <InputField
-          value={supplierName}
+          value={props.item.supplier_name}
           onChange={e => setSupplierName(e.target.value)}
           name="supplierName"
           type="text"
           placeholder="Enter Suppllier Name"
         />
 
-        <Button type="submit">Add new item</Button>
+        <Button type="submit">Edit item</Button>
         <Button onClick={props.handleRequestCloseFunc}>Cancel</Button>
       </StyledForm>
     </ReactModal>
@@ -154,7 +133,7 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddForm);
+)(EditForm);
 
 const overlay = {
   position: "fixed",

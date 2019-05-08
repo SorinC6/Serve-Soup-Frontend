@@ -43,5 +43,10 @@ export const DETELE_ITEM_START = "DETELE_ITEM_START";
 export const DETELE_ITEM_SUCCESS = "DETELE_ITEM_SUCCESS";
 export const DETELE_ITEM_FAIL = "DETELE_ITEM_FAIL";
 
+//Update item from database
+export const UPDATE_ITEM_START = "UPDATE_ITEM_START";
+export const UPDATE_ITEM_SUCCESS = "UPDATE_ITEM_SUCCESS";
+export const UPDATE_ITEM_FAIL = "UPDATE_ITEM_FAIL";
+
 //Search Items action types
 export const SEARCH_ITEM = "SEARCH_ITEM";

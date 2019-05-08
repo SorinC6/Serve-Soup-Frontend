@@ -25,7 +25,7 @@ export const addItem = itemData => dispatch => {
   axiosWithAuth()
     .post(url.postItem, itemData)
     .then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       getAllItems();
       dispatch({ type: types.ADD_ITEM_SUCCESS, payload: res.data });
     })
@@ -54,11 +54,26 @@ export const deleteItem = id => dispatch => {
   axiosWithAuth()
     .delete(`${url.deleteUrl}/${id}`)
     .then(res => {
-      console.log(res.data);
+      //console.log(res.data);
       dispatch({ type: types.DETELE_ITEM_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: types.DETELE_ITEM_FAIL, payload: err.message });
-      console.log(err.message);
+      //console.log(err.message);
+    });
+};
+
+export const update = id => dispatch => {
+  dispatch({ type: types.UPDATE_ITEM_START });
+
+  axiosWithAuth()
+    .put(`${url.updateURL}/${id}`)
+    .then(res => {
+      console.log(res.data);
+      dispatch({ type: types.UPDATE_ITEM_SUCCESS });
+    })
+    .catch(err => {
+      dispatch({ type: types.UPDATE_ITEM_FAIL, payload: err.message });
+      console.log(err);
     });
 };

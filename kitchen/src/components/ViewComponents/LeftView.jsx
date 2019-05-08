@@ -9,8 +9,9 @@ import {
 } from "../../store/actions/actionCategory";
 
 const LeftView = props => {
+  const { getCategories } = props;
   useEffect(() => {
-    props.getCategories();
+    getCategories();
   }, []);
 
   //console.log("CATEGORIES: ", props.categories);
