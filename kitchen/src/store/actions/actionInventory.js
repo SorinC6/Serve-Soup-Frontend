@@ -63,11 +63,11 @@ export const deleteItem = id => dispatch => {
     });
 };
 
-export const update = id => dispatch => {
+export const updateItem = (id, itemData) => dispatch => {
   dispatch({ type: types.UPDATE_ITEM_START });
 
   axiosWithAuth()
-    .put(`${url.updateURL}/${id}`)
+    .put(`${url.updateURL}/${id}`, itemData)
     .then(res => {
       console.log(res.data);
       dispatch({ type: types.UPDATE_ITEM_SUCCESS });

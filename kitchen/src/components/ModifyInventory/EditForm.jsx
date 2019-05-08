@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { connect } from "react-redux";
-import { getCategories } from "../../store/actions/actionCategory";
-import { addItem } from "../../store/actions/actionInventory";
+import { updateItem } from "../../store/actions/actionInventory";
 import styled from "styled-components";
 import bg from "../../assets/add-bg.jpg";
 import ReactModal from "react-modal";
@@ -18,19 +17,45 @@ const EditForm = props => {
   const [supplierContact, setSupplierContact] = useState("");
   const [supplierName, setSupplierName] = useState("");
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setName(props.item.name);
+    setPrice(props.item.price);
+    setAmount(props.item.amount);
+    setUnit(props.item.unit);
+    setSelectedOption(props.item.categoryID);
+    setSupplierContact(props.item.supplier_contact);
+    setSupplierName(props.item.supplier_name);
+  }, []);
 
   const handleEditInfo = e => {
     e.preventDefault();
+    const itemData = {
+      name,
+      price,
+      amount,
+      unit,
+      image,
+      categoryID: selectedOption,
+      supplier_contact: supplierContact,
+      supplier_name: supplierName
+    };
+    console.log(itemData);
   };
+
+  // const populateFields = () => {
+  //   setName(props.item.name);
+  //   setPrice(props.item.price);
+  //   setAmount(props.item.amount);
+  //   setUnit(props.item.unit);
+  // };
 
   const options = props.categories.map(obj => ({
     value: obj.categoryID,
     label: obj.name
   }));
-  console.log("Option: ", options);
+  //console.log("Option: ", options);
 
-  console.log(props.item);
+  console.log("PROPS ", props.item);
 
   return (
     <ReactModal
@@ -44,7 +69,7 @@ const EditForm = props => {
         <Heading>Edit Item</Heading>
         <InputField
           required
-          value={props.item.name}
+          value={name}
           onChange={e => setName(e.target.value)}
           name="name"
           type="text"
@@ -53,7 +78,7 @@ const EditForm = props => {
 
         <InputField
           required
-          value={props.item.amount}
+          value={amount}
           onChange={e => setAmount(e.target.value)}
           name="amount"
           type="text"
@@ -62,16 +87,16 @@ const EditForm = props => {
 
         <InputField
           required
-          value={props.item.unit}
+          value={unit}
           onChange={e => setUnit(e.target.value)}
           name="unit"
           type="text"
           placeholder="Enter item unit"
         />
-      
+
         <InputField
           required
-          value={props.item.price}
+          value={price}
           onChange={e => setPrice(e.target.value)}
           name="price"
           type="text"
@@ -80,16 +105,16 @@ const EditForm = props => {
 
         <SelectField>
           <Select
-            placeholder={'Category name'}
+            placeholder={"Category name"}
             menuPlacement="top"
-            value={props.item.categoryID}
+            value={selectedOption}
             onChange={selectedOption => setSelectedOption(selectedOption)}
             options={options}
           />
         </SelectField>
 
         <InputField
-          value={props.item.image}
+          value={image}
           onChange={e => setImage(e.target.value)}
           name="img_url"
           type="text"
@@ -97,7 +122,7 @@ const EditForm = props => {
         />
 
         <InputField
-          value={props.item.supplier_contact}
+          value={supplierContact}
           onChange={e => setSupplierContact(e.target.value)}
           name="supplierContact"
           type="text"
@@ -105,7 +130,7 @@ const EditForm = props => {
         />
 
         <InputField
-          value={props.item.supplier_name}
+          value={supplierName}
           onChange={e => setSupplierName(e.target.value)}
           name="supplierName"
           type="text"
@@ -126,8 +151,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  getCategories,
-  addItem
+  updateItem
 };
 
 export default connect(
