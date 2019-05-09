@@ -87,6 +87,8 @@ const Wrapper = styled.div`
     border-radius: 3px;
     text-transform: lowercase;
     cursor: pointer;
+
+    
     &:before {
       content: "";
       position: absolute;

@@ -46,6 +46,10 @@ const MainWrapper = styled.div`
     animation: float 2s linear infinite;
     animation-direction: alternate;
 
+    @media (max-width: 700px) {
+      display: none;
+    }
+
     @keyframes float {
       from {
         transform: rotate(3deg);
