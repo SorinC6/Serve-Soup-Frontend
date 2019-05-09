@@ -9,7 +9,7 @@ import ReactModal from "react-modal";
 import "./modal.css";
 
 const AddForm = props => {
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(1);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [amount, setAmount] = useState("");
@@ -23,18 +23,22 @@ const AddForm = props => {
   }, []);
 
   const handleAddInventory = e => {
+    console.log(selectedOption);
     e.preventDefault();
     const itemData = {
       name: name,
       amount: parseInt(amount),
       unit: unit,
       price: price,
-      categoryID: selectedOption.value,
+      categoryID: selectedOption.value === null ? 1 : selectedOption.value,
       image: image,
       supplier_contact: supplierContact,
       supplier_name: supplierName
     };
 
+    if (itemData.categoryID === null) {
+      itemData.categoryID = 1;
+    }
     if (itemData["image"] === "" || undefined) {
       itemData["image"] =
         "https://spoonacular.com/cdn/ingredients_500x500/" +
@@ -49,7 +53,7 @@ const AddForm = props => {
   };
 
   const options = props.categories.map(obj => ({
-    value: obj.id,
+    value: obj.id || 1,
     label: obj.name
   }));
 
@@ -101,6 +105,7 @@ const AddForm = props => {
 
         <SelectField>
           <Select
+            required
             placeholder="Chose a category"
             menuPlacement="top"
             value={selectedOption}

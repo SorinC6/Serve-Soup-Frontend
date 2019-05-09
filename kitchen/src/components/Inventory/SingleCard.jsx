@@ -16,7 +16,6 @@ import axiosWithPermission from "../../store/axios/index";
 
 const SingleCard = props => {
   const [showEdit, setShowEdit] = useState(false);
-  //console.log(showEdit);
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -24,7 +23,6 @@ const SingleCard = props => {
   }, []);
 
   const increase = () => {
-    //props.item.amount++;
     const itemIncreased = {
       amount: ++props.item.amount
     };
@@ -56,7 +54,6 @@ const SingleCard = props => {
     props.getItemById(props.match.params.id);
   };
 
-  //console.log("propspsps ", props.item);
   return (
     <div>
       <Header />

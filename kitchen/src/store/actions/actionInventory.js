@@ -1,7 +1,7 @@
 import * as types from "./actionTypes";
 import * as url from "../../constants/ApiConstants";
 import axiosWithAuth from "../axios/index";
-import { getAllItems, getSpecificItems, getCategories } from "./actionCategory";
+import { getAllItems } from "./actionCategory";
 
 // export const getItems = () => dispatch => {
 //   dispatch({ type: types.GET_ITEMS_START });
