@@ -108,3 +108,21 @@ export const deleteItem = (state = initialState, action) => {
       return state;
   }
 };
+
+export const updateItem = (state = initialState, action) => {
+  switch (action.type) {
+    case types.UPDATE_ITEM_START:
+      return {
+        ...state,
+        loaoding: true,
+        error: null
+      };
+    case types.UPDATE_ITEM_SUCCESS:
+      return items;
+    case types.UPDATE_ITEM_FAIL:
+      return {
+        ...state,
+        error: action.payload
+      };
+  }
+};

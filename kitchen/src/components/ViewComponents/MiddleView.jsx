@@ -14,9 +14,10 @@ const MiddleView = props => {
   return (
     <Wrapper>
       {!props.items.length && <h4>No Items in this Category</h4>}
-      {props.items.length && props.items.map(item => {
-        return <MainCard key={item.id} data={item} />;
-      })}
+      {props.items.length > 0 &&
+        props.items.map(item => {
+          return <MainCard key={item.id} data={item} />;
+        })}
     </Wrapper>
   );
 };

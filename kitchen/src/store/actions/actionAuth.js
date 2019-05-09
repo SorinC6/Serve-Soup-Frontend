@@ -30,6 +30,6 @@ export const loginUser = userData => dispatch => {
     })
     .catch(err => {
       dispatch({ type: types.LOGIN_USER_FAIL, payload: err.message });
-      console.log(err);
+      console.log('ssss',err);
     });
 };

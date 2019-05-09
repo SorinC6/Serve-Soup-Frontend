@@ -9,8 +9,9 @@ import {
 } from "../../store/actions/actionCategory";
 
 const LeftView = props => {
+  const { getCategories } = props;
   useEffect(() => {
-    props.getCategories();
+    getCategories();
   }, []);
 
   //console.log("CATEGORIES: ", props.categories);
@@ -68,6 +69,10 @@ const Wrapper = styled.div`
     font-size: 20px;
     font-style: italic;
     font-weight: bold;
+
+    @media (max-width: 700px) {
+      display: none;
+    }
   }
 
   button {
@@ -86,6 +91,13 @@ const Wrapper = styled.div`
     border-radius: 3px;
     text-transform: lowercase;
     cursor: pointer;
+
+    @media (max-width: 700px) {
+      width: 100%;
+      font-size: 16px;
+      text-align: center;
+      padding: 15px 0;
+    }
     &:before {
       content: "";
       position: absolute;

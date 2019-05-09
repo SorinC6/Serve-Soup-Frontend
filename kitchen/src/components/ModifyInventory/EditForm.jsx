@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { connect } from "react-redux";
-import { getCategories } from "../../store/actions/actionCategory";
-import { addItem } from "../../store/actions/actionInventory";
+import { updateItem } from "../../store/actions/actionInventory";
 import styled from "styled-components";
 import bg from "../../assets/add-bg.jpg";
 import ReactModal from "react-modal";
 import "./modal.css";
+import { withRouter } from "react-router-dom";
 
-const AddForm = props => {
-  const [selectedOption, setSelectedOption] = useState(1);
+const EditForm = props => {
+  const [selectedOption, setSelectedOption] = useState(null);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [amount, setAmount] = useState("");
@@ -19,43 +19,39 @@ const AddForm = props => {
   const [supplierName, setSupplierName] = useState("");
 
   useEffect(() => {
-    props.getCategories();
+    setName(props.item.name);
+    setPrice(props.item.price);
+    setAmount(props.item.amount);
+    setUnit(props.item.unit);
+    setImage(props.item.image);
+    setSelectedOption(props.item.categoryID);
+    setSupplierContact(props.item.supplier_contact);
+    setSupplierName(props.item.supplier_name);
   }, []);
 
-  const handleAddInventory = e => {
-    console.log(selectedOption);
+  const handleEditInfo = e => {
     e.preventDefault();
     const itemData = {
-      name: name,
-      amount: parseInt(amount),
-      unit: unit,
-      price: price,
-      categoryID: selectedOption.value === null ? 1 : selectedOption.value,
-      image: image,
+      name,
+      price,
+      amount,
+      unit,
+      image,
+      categoryID: selectedOption.value,
       supplier_contact: supplierContact,
       supplier_name: supplierName
     };
 
-    if (itemData.categoryID === null) {
-      itemData.categoryID = 1;
-    }
-    if (itemData["image"] === "" || undefined) {
-      itemData["image"] =
-        "https://spoonacular.com/cdn/ingredients_500x500/" +
-        itemData["name"].toLowerCase() +
-        ".jpg";
-    }
-    console.log(itemData);
-
-    props.addItem(itemData);
-    e.target.reset();
+    props.updateItem(props.item.id, itemData);
     props.handleRequestCloseFunc();
+    props.history.push("/");
   };
 
   const options = props.categories.map(obj => ({
-    value: obj.id || 1,
+    value: obj.id,
     label: obj.name
   }));
+  console.log("Option: ", options);
 
   return (
     <ReactModal
@@ -65,8 +61,8 @@ const AddForm = props => {
       onRequestClose={props.handleRequestCloseFunc}
       closeTimeoutMS={1500}
     >
-      <StyledForm autoComplete="off" onSubmit={handleAddInventory}>
-        <Heading>Add new item</Heading>
+      <StyledForm autoComplete="off" onSubmit={handleEditInfo}>
+        <Heading>Edit Item</Heading>
         <InputField
           required
           value={name}
@@ -105,8 +101,7 @@ const AddForm = props => {
 
         <SelectField>
           <Select
-            required
-            placeholder="Chose a category"
+            placeholder={"Category name"}
             menuPlacement="top"
             value={selectedOption}
             onChange={selectedOption => setSelectedOption(selectedOption)}
@@ -138,7 +133,7 @@ const AddForm = props => {
           placeholder="Enter Suppllier Name"
         />
 
-        <Button type="submit">Add new item</Button>
+        <Button type="submit">Edit item</Button>
         <Button onClick={props.handleRequestCloseFunc}>Cancel</Button>
       </StyledForm>
     </ReactModal>
@@ -152,14 +147,13 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  getCategories,
-  addItem
+  updateItem
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddForm);
+)(withRouter(EditForm));
 
 const overlay = {
   position: "fixed",

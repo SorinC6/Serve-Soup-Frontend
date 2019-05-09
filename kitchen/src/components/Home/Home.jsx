@@ -16,8 +16,10 @@ const Home = props => {
       </HeaderWrapper>
       <MainView>
         <LeftView />
-        <MiddleView />
-        <RightView />
+        <MobileView>
+          <MiddleView />
+          <RightView />
+        </MobileView>
       </MainView>
       <div />
     </div>
@@ -41,4 +43,11 @@ const HeaderWrapper = styled.div`
 const MainView = styled.div`
   width: 100%;
   display: flex;
+`;
+
+const MobileView = styled.div`
+  margin: 0;
+  display: flex;
+  width: 80%;
+  justify-content: space-evenly;
 `;
