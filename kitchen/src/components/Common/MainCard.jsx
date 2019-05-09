@@ -41,6 +41,18 @@ const CardWrapper = styled.div`
   -moz-box-shadow: 0 10px 6px -6px #777;
   box-shadow: 0 10px 6px -6px #777;
 
+  @media (max-width: 700px) {
+    width: 200px;
+    height: 210px;
+    margin: 13px;
+  }
+
+  @media (max-width: 370px) {
+    width: 150px;
+    height: 170px;
+    margin: 10px;
+  }
+
   &:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
@@ -74,14 +86,26 @@ const CardWrapper = styled.div`
     opacity: 0;
     transition: all 0.6s;
     transform: translateY(100%);
+
+    @media (max-width: 400px) {
+      font-size: 10px;
+    }
     h4 {
       text-transform: uppercase;
       margin: 0;
+
+      @media (max-width: 400px) {
+        font-size: 15px;
+      }
     }
     p {
       font-size: 18px;
       text-transform: capitalize;
       padding: 10px;
+
+      @media (max-width: 400px) {
+        font-size: 13px;
+      }
     }
   }
   &:hover img {

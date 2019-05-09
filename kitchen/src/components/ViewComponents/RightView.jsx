@@ -49,6 +49,11 @@ const Wrapper = styled.div`
     border: 1px solid darkred;
     margin: 20px 0;
 
+    @media (max-width: 700px) {
+      padding: 4px 0;
+      font-size: 14px;
+    }
+
     &:hover {
       background-color: darkred;
       color: white;
@@ -64,9 +69,16 @@ const Wrapper = styled.div`
       position: absolute;
       transform: translateX(-100%) rotate(45deg);
       transition: all 0.5s;
+
+      @media (max-width: 700px) {
+        transform: translateX(-150%) rotate(45deg);
+      }
     }
     &:hover:before {
       transform: translateX(100%) rotate(45deg);
+      @media (max-width: 700px) {
+        transform: translateX(-200%) rotate(45deg);
+      }
     }
   }
 `;
