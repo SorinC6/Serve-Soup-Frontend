@@ -67,8 +67,8 @@ export const categoriesReducer = (state = initialState, action) => {
         ...state,
         searching: true,
         items: state.items.filter(
-          itm =>
-            itm.name.toUpperCase().indexOf(action.payload.toUpperCase()) > -1
+          itm => itm.name.toLowerCase().includes(action.payload.toLowerCase())
+          //itm.name.toUpperCase().indexOf(action.payload.toUpperCase()) > -1
         )
       };
 

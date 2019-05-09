@@ -117,6 +117,8 @@ export const updateItem = (state = initialState, action) => {
         loaoding: true,
         error: null
       };
+    case types.UPDATE_ITEM_SUCCESS:
+      return items;
     case types.UPDATE_ITEM_FAIL:
       return {
         ...state,

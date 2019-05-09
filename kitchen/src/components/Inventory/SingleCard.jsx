@@ -2,10 +2,17 @@ import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import LeftView from "../ViewComponents/RightView";
 import { connect } from "react-redux";
-import { getItemById, deleteItem } from "../../store/actions/actionInventory";
+import {
+  getItemById,
+  deleteItem,
+  updateItem
+} from "../../store/actions/actionInventory";
 import styled from "styled-components";
 import DetailCard from "../Common/DetailCard";
 import EditForm from "../ModifyInventory/EditForm";
+import axios from "axios";
+import * as url from "../../constants/ApiConstants";
+import axiosWithPermission from "../../store/axios/index";
 
 const SingleCard = props => {
   const [showEdit, setShowEdit] = useState(false);
@@ -16,6 +23,39 @@ const SingleCard = props => {
     props.getItemById(id);
   }, []);
 
+  const increase = () => {
+    //props.item.amount++;
+    const itemIncreased = {
+      amount: ++props.item.amount
+    };
+    //props.updateItem(props.match.params.id, itemIncreased);
+    axiosWithPermission()
+      .put(`${url.updateURL}/${props.match.params.id}`, itemIncreased)
+      .then(res => {
+        //console.log(res.data);
+      })
+      .catch(err => {
+        //console.log(err.data);
+      });
+    props.getItemById(props.match.params.id);
+  };
+
+  const decrease = () => {
+    //props.item.amount++;
+    const itemIncreased = {
+      amount: --props.item.amount
+    };
+    axiosWithPermission()
+      .put(`${url.updateURL}/${props.match.params.id}`, itemIncreased)
+      .then(res => {
+        //console.log(res.data);
+      })
+      .catch(err => {
+        //console.log(err.data);
+      });
+    props.getItemById(props.match.params.id);
+  };
+
   //console.log("propspsps ", props.item);
   return (
     <div>
@@ -25,6 +65,8 @@ const SingleCard = props => {
           item={props.item}
           deleteItem={props.deleteItem}
           showEditForm={() => setShowEdit(true)}
+          increase={increase}
+          decrease={decrease}
         />
         {showEdit && (
           <EditForm
@@ -47,7 +89,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   getItemById,
-  deleteItem
+  deleteItem,
+  updateItem
 };
 
 export default connect(

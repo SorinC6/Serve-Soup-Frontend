@@ -32,11 +32,11 @@ const DetailCard = props => {
         <h3>Price: {price} $</h3>
 
         <AmountMod>
-          <button>-</button>
+          <button onClick={props.decrease}>-</button>
           <h4>
             {amount} {unit}
           </h4>
-          <button>+</button>
+          <button onClick={props.increase}>+</button>
         </AmountMod>
         <h5>Supplier: {supplier_name}</h5>
         <h5>Contact: {supplier_contact}</h5>
