@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getUserById } from "../../store/actions/actionUserInfo";
+import UserWrapper from "./UserWrapper";
+import Header from "../Header/Header";
 
- 
 const User = props => {
   useEffect(() => {
     const id = localStorage.getItem("user_id");
@@ -11,7 +12,8 @@ const User = props => {
   }, []);
   return (
     <div>
-      <p>User Info Cmponent</p>
+      <Header />
+      <UserWrapper user={props.userData} />
     </div>
   );
 };

@@ -44,7 +44,7 @@ const MainWrapper = styled.div`
   color: darkred;
   align-items: center;
   display: flex;
-  width: 100%;
+  max-width: 100%;
   justify-content: space-between;
   position: relative;
   .logo {
@@ -59,6 +59,7 @@ const MainWrapper = styled.div`
   }
 
   h2 {
+    text-align: center;
     font-weight: bold;
     font-size: 40px;
     letter-spacing: 15px;
@@ -66,9 +67,13 @@ const MainWrapper = styled.div`
       0 30px 5px rgba(12, 122, 22, 0.1);
     animation: float 2s linear infinite;
     animation-direction: alternate;
+    margin: 0;
+    padding: 0;
 
     @media (max-width: 700px) {
       display: none;
+      margin: 0;
+      padding: 0;
     }
 
     @keyframes float {
