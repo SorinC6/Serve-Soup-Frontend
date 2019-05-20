@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import bg from "../../assets/soup.jpg";
 
 const SoupKitchen = ({ data }) => {
   console.log(data);
@@ -17,14 +16,12 @@ const SoupKitchen = ({ data }) => {
 export default SoupKitchen;
 
 const Wrapper = styled.div`
-  background-image: url(${bg});
-  max-width: 100%;
-  h1 {
-    margin: 0;
-    color: red;
-  }
-
-  h2 {
-    margin: 0;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px dashed darkred;
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  margin-bottom: 20px;
 `;

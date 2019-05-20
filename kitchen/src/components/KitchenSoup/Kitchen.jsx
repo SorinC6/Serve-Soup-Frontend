@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { getAllSoupKitchens } from "../../store/actions/actionSoupKitchens";
 import Header from "../Header/Header";
 import SoupKitchen from "./SoupKitchen";
+import bg from "../../assets/soup.jpg";
+import styled from "styled-components";
 
 const Kitchen = props => {
   useEffect(() => {
@@ -13,10 +15,12 @@ const Kitchen = props => {
   return (
     <div>
       <Header />
-      {props.kitchenData.map(item => {
-        console.log(item);
-        return <SoupKitchen key={item.id} data={item} />;
-      })}
+      <ListWrapper>
+        {props.kitchenData.map(item => {
+          console.log(item);
+          return <SoupKitchen key={item.id} data={item} />;
+        })}
+      </ListWrapper>
     </div>
   );
 };
@@ -35,3 +39,8 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Kitchen);
+
+const ListWrapper = styled.div`
+  background-image: url(${bg});
+  max-width: 100%;
+`;
