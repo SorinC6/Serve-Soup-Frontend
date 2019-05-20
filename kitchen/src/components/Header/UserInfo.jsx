@@ -1,17 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import user from "../../assets/user.png";
+import { withRouter } from "react-router-dom";
 
 const UserInfo = props => {
   return (
     <Wrapper>
-      <img src={user} alt="userimg" />
+      <img
+        src={user}
+        onClick={() => props.history.push("/user")}
+        alt="userimg"
+      />
       <button onClick={props.logout}>Log Out</button>
     </Wrapper>
   );
 };
 
-export default UserInfo;
+export default withRouter(UserInfo);
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -21,6 +26,13 @@ const Wrapper = styled.div`
   img {
     width: 60px;
     height: 60px;
+    transition: 1s all;
+    &:hover {
+      transform: scale(1.1);
+      background: darkred;
+      border-radius: 50%;
+      cursor: pointer;
+    }
   }
 
   button {
@@ -56,6 +68,7 @@ const Wrapper = styled.div`
     &:hover:before {
       transform: scale(1);
       opacity: 1;
+      cursor: pointer;
     }
   }
 `;
