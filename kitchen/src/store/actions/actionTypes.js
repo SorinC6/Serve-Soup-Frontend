@@ -50,3 +50,13 @@ export const UPDATE_ITEM_FAIL = "UPDATE_ITEM_FAIL";
 
 //Search Items action types
 export const SEARCH_ITEM = "SEARCH_ITEM";
+
+//User get INFO action types
+export const GET_USER_INFO_START = "GET_USER_INFO_START";
+export const GET_USER_INFO_SUCCESS = "GET_USER_INFO_SUCCESS";
+export const GET_USER_INFO_FAIL = "GET_USER_INFO_FAIL";
+
+//USER Delete action types
+export const DELETE_USER_START = "DELETE_USER_START";
+export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
+export const DELETE_USER_FAIL = "DELETE_USER_FAIL";
