@@ -37,6 +37,12 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 
+  @media (max-width: 430px) {
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
   button {
     outline: none;
     color: black;

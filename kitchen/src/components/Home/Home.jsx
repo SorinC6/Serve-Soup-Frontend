@@ -43,6 +43,9 @@ const HeaderWrapper = styled.div`
 const MainView = styled.div`
   width: 100%;
   display: flex;
+  @media (max-width: 430px) {
+    justify-content: space-between;
+  }
 `;
 
 const MobileView = styled.div`
@@ -50,4 +53,8 @@ const MobileView = styled.div`
   display: flex;
   width: 80%;
   justify-content: space-evenly;
+
+  @media (max-width: 430px) {
+    flex-direction: column-reverse;
+  }
 `;

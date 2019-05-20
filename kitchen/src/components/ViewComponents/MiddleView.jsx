@@ -43,4 +43,7 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   /* border: 1px solid red; */
+  @media (max-width: 430px) {
+    width: 100%;
+  }
 `;
