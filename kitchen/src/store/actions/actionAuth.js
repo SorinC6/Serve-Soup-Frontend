@@ -26,10 +26,11 @@ export const loginUser = userData => dispatch => {
     .then(res => {
       console.log(res.data);
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user_id", res.data.id);
       dispatch({ type: types.LOGIN_USER_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: types.LOGIN_USER_FAIL, payload: err.message });
-      console.log('ssss',err);
+      console.log("ssss", err);
     });
 };

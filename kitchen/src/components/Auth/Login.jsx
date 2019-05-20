@@ -20,13 +20,9 @@ const Login = props => {
       name: username,
       password: password
     };
-    console.log(userData);
-
     props.loginUser(userData);
   };
 
-  console.log("Login loading", props.loading);
-  console.log("Login error", props.error);
   localStorage.getItem("token") && props.history.push("/");
 
   return (

@@ -26,3 +26,6 @@ export const deleteUrl = "https://kitchen-soup-backend.herokuapp.com/api/items";
 
 //Update item by ID
 export const updateURL = "https://kitchen-soup-backend.herokuapp.com/api/items";
+
+//GET USER INFO
+export const userInfo = "https://kitchen-soup-backend.herokuapp.com/api/users";

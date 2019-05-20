@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
-import LeftView from "../ViewComponents/RightView";
+import RightView from "../ViewComponents/RightView";
 import { connect } from "react-redux";
 import {
   getItemById,
@@ -72,7 +72,7 @@ const SingleCard = props => {
             item={props.item}
           />
         )}
-        <LeftView />
+        <RightView />
       </Wrapper>
     </div>
   );
@@ -98,4 +98,8 @@ export default connect(
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 430px) {
+    flex-direction: column-reverse;
+  }
 `;

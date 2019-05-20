@@ -5,6 +5,7 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Home from "./components/Home/Home";
 import SingleCard from "./components/Inventory/SingleCard";
+import User from "./components/UserInfo/User";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Route path="/register" component={Register} />
         {/* <Route path="/home" component={Home} /> */}
         <Route path="/item/:id" component={SingleCard} />
-
+        <Route path="/user" component={User} />
         <Route
           exact
           path="/"

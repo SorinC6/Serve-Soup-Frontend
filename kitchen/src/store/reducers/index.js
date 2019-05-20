@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import { register, login } from "./authReducers";
 import { categoriesReducer } from "./categoryReducer";
 import { items, postItem, getById, deleteItem } from "./inventoryReducer";
+import { userInfo } from "./userReducer";
 
 export default combineReducers({
   register,
@@ -11,5 +12,6 @@ export default combineReducers({
   items,
   postItem,
   getById,
-  deleteItem
+  deleteItem,
+  userInfo
 });
