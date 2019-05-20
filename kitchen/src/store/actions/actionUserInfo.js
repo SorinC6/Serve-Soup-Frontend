@@ -11,7 +11,7 @@ export const getUserById = id => dispatch => {
       console.log(res.data);
       dispatch({ type: types.GET_USER_INFO_SUCCESS, payload: res.data });
     })
-    .cahtch(err => {
+    .catch(err => {
       console.log(err);
       dispatch({ type: types.GET_USER_INFO_FAIL, payload: err.message });
     });

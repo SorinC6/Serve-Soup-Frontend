@@ -3,7 +3,7 @@ import styled from "styled-components";
 import bg from "../../assets/header-bg.jpg";
 import headerLogo from "../../assets/header-logo.png";
 import UserInfo from "./UserInfo";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
 const Header = props => {
