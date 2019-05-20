@@ -1,22 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import user from "../../assets/user.png";
-import { withRouter } from "react-router-dom";
 
 const UserInfo = props => {
-  const logout = () => {
-    localStorage.clear();
-    props.history.push("/login");
-  };
   return (
     <Wrapper>
       <img src={user} alt="userimg" />
-      <button onClick={logout}>Log Out</button>
+      <button onClick={props.logout}>Log Out</button>
     </Wrapper>
   );
 };
 
-export default withRouter(UserInfo);
+export default UserInfo;
 
 const Wrapper = styled.div`
   padding: 20px;

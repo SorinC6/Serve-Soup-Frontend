@@ -1,22 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import bg from "../../assets/header-bg.jpg";
 import headerLogo from "../../assets/header-logo.png";
 import UserInfo from "./UserInfo";
+import { NavLink, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 const Header = props => {
+  const [showMenu, setShowMenu] = useState(false);
+
+  const logout = () => {
+    localStorage.clear();
+    props.history.push("/login");
+  };
+
+  const toggle = () => {
+    setShowMenu(showMenu === false ? true : false);
+  };
   return (
     <MainWrapper>
-      <img className="logo" src={headerLogo} alt="logo" />
+      <img className="logo" src={headerLogo} alt="logo" onClick={toggle} />
+      <Menu showMenu={showMenu}>
+        <LinkContainer to="/">Home</LinkContainer>
+        <LinkContainer to="/user">User</LinkContainer>
+        <LinkContainer to="/contact">Contact</LinkContainer>
+        <LinkContainer to="/add-form" className="add-btn">
+          Add Inventory
+        </LinkContainer>
+        <LinkContainer onClick={logout} className="logout-btn">
+          Logout
+        </LinkContainer>
+      </Menu>
+
       <h2>Manage Your Soup Kitchen</h2>
       <div>
-        <UserInfo />
+        <UserInfo logout={logout} />
       </div>
     </MainWrapper>
   );
 };
 
-export default Header;
+export default withRouter(Header);
 
 const MainWrapper = styled.div`
   background-image: url(${bg});
@@ -25,7 +49,7 @@ const MainWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
-
+  position: relative;
   .logo {
     width: 100px;
     color: red;
@@ -57,6 +81,42 @@ const MainWrapper = styled.div`
       to {
         transform: rotate(-3deg);
       }
+    }
+  }
+`;
+
+const LinkContainer = styled(NavLink)`
+  padding: 20px 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+  &:hover {
+    transform: scale(1.4);
+    transition: 0.25s ease-in-out;
+    color: darkred;
+  }
+`;
+
+const Menu = styled.div`
+  display: ${props => (props.showMenu ? "flex" : "none")};
+  position: absolute;
+  flex-direction: column;
+  top: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 200;
+  height: 600px;
+  width: 80%;
+  align-items: center;
+  justify-content: space-evenly;
+  animation: enter 1s;
+  @keyframes enter {
+    from {
+      transform: translateX(-200px);
+      opacity: 0;
+    }
+    to {
+      transform: translate(0);
     }
   }
 `;
