@@ -29,3 +29,7 @@ export const updateURL = "https://kitchen-soup-backend.herokuapp.com/api/items";
 
 //GET USER INFO
 export const userInfo = "https://kitchen-soup-backend.herokuapp.com/api/users";
+
+//GET ALL Soup Kitchens
+export const soupKitcheks =
+  "https://kitchen-soup-backend.herokuapp.com/api/kitchens";

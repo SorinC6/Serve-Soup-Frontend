@@ -6,6 +6,7 @@ import Register from "./components/Auth/Register";
 import Home from "./components/Home/Home";
 import SingleCard from "./components/Inventory/SingleCard";
 import User from "./components/UserInfo/User";
+import Kitchen from "./components/KitchenSoup/Kitchen";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         {/* <Route path="/home" component={Home} /> */}
         <Route path="/item/:id" component={SingleCard} />
         <Route path="/user" component={User} />
+        <Route path="/kitchen" component={Kitchen} />
         <Route
           exact
           path="/"

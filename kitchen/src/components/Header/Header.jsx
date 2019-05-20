@@ -29,7 +29,7 @@ const Header = props => {
         </LinkContainer>
       </Menu>
 
-      <h2>Manage Your Soup Kitchen</h2>
+      <h2 onClick={() => props.history.push("/")}>Manage Your Soup Kitchen</h2>
       <div>
         <UserInfo logout={logout} />
       </div>
@@ -74,6 +74,10 @@ const MainWrapper = styled.div`
       display: none;
       margin: 0;
       padding: 0;
+    }
+
+    &:hover {
+      cursor: crosshair;
     }
 
     @keyframes float {

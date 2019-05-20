@@ -4,6 +4,7 @@ import { register, login } from "./authReducers";
 import { categoriesReducer } from "./categoryReducer";
 import { items, postItem, getById, deleteItem } from "./inventoryReducer";
 import { userInfo } from "./userReducer";
+import { allKitchen } from "./kitchensReducer";
 
 export default combineReducers({
   register,
@@ -13,5 +14,6 @@ export default combineReducers({
   postItem,
   getById,
   deleteItem,
-  userInfo
+  userInfo,
+  allKitchen
 });

@@ -21,7 +21,9 @@ const RightView = props => {
     <Wrapper>
       <button onClick={handleBack}>View Inventory</button>
       <button onClick={handleAddInventory}>Add Inventory</button>
-      <button>Soup Kitchens</button>
+      <button onClick={() => props.history.push("/kitchen")}>
+        Soup Kitchens
+      </button>
       <AddFrom
         handlingModal={showAddForm}
         handleRequestCloseFunc={closeModal}
