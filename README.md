@@ -3,5 +3,5 @@ Making the frontend for backend build by me in Lambda Build Week
 
 
 
-Deployed with Netlify: | [View Demo](http://stackoverflow.com){:target="_blank" rel="noopener"}
+Deployed with Netlify: |[view DEMO](https://i-serve-soup.netlify.com/login){target="_blank"}
 
