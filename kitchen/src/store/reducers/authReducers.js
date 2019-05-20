@@ -3,7 +3,7 @@ import * as types from "../actions/actionTypes";
 const initialState = {
   error: null,
   loading: false,
-  username: ""
+  usernameRole: ""
 };
 
 // export const errors = (state = initialState, action) => {
@@ -53,12 +53,14 @@ export const login = (state = initialState, action) => {
         loading: true
       };
     case types.LOGIN_USER_SUCCESS:
+      console.log("Reducer login usccess ", action.payload);
       return {
         ...state,
         loading: false,
         error: null,
-        username: action.username
+        usernameRole: action.payload.role
       };
+
     default:
       return state;
   }
