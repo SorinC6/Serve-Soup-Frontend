@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const allKitchen = (state = initialState, action) => {
-  switch (action.tyle) {
+  switch (action.type) {
     case types.GET_SOUP_KITCHENS_START:
       return {
         ...state,
