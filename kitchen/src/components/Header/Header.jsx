@@ -24,9 +24,6 @@ const Header = props => {
         <LinkContainer to="/">Home</LinkContainer>
         <LinkContainer to="/user">User</LinkContainer>
         <LinkContainer to="/contact">Contact</LinkContainer>
-        <LinkContainer to="/add-form" className="add-btn">
-          Add Inventory
-        </LinkContainer>
         <LinkContainer onClick={logout} className="logout-btn">
           Logout
         </LinkContainer>

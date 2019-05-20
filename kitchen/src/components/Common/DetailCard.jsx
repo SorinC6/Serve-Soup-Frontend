@@ -48,9 +48,9 @@ const DetailCard = props => {
 export default withRouter(DetailCard);
 
 const Wrapper = styled.div`
-  margin: 50px 20px;
+  margin: 30px 20px;
   width: 50%;
-  height: 400px;
+  height: 500px;
   margin-left: 250px;
   display: flex;
   justify-content: space-evenly;
@@ -62,6 +62,10 @@ const Wrapper = styled.div`
   transition: all 1s;
   &:hover {
     transform: scale(1.1);
+
+    @media (max-width: 430px) {
+      transform: scale(1);
+    }
   }
 
   @media (max-width: 860px) {
@@ -69,7 +73,7 @@ const Wrapper = styled.div`
     margin-left: 10px;
     font-size: 15px;
     flex-direction: column;
-    height: 520px;
+    height: 620px;
     margin-left: 20px;
   }
   img {
