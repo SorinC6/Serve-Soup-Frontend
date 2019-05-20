@@ -1,16 +1,22 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getAllSoupKitchens } from "../../store/actions/actionSoupKitchens";
+import Header from "../Header/Header";
+import SoupKitchen from "./SoupKitchen";
 
 const Kitchen = props => {
   useEffect(() => {
     props.getAllSoupKitchens();
   }, []);
 
-  console.log(props.kitchenData);
+  //console.log(props.kitchenData);
   return (
     <div>
-      <p>aibaba</p>
+      <Header />
+      {props.kitchenData.map(item => {
+        console.log(item);
+        return <SoupKitchen key={item.id} data={item} />;
+      })}
     </div>
   );
 };
